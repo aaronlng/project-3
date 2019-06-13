@@ -4,20 +4,51 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 //setting up socket.io
-const socketIO = require("socket.io")
-const server = http.createrServer(app);
+const http = require("http");
+const socketIO = require("socket.io");
+const server = http.createServer(app);
 const io = socketIO(server)
 
+// Chat room setup
 io.on("connection", socket => {
-  console.log("new client connected"),
-
-    socket.on("incoming data", (data) => {
-      socket.broadcast.emit("outgoing data", { num: data })
+  console.log("socket connection 01")
+  socket.on("message", body => {
+    socket.broadcast.emit("message", {
+      body,
+      from:socket.id.slice(8)
     })
+  })
 
-  socket.on("disconnect", () => console.log("Client disconnect"))
+  // socket.on("add user", (username) => {
+  //   if (addedUser) return;
 
-})
+  //   socket.username = username;
+  //   addedUser = true;
+  //   socket.broadcast.emit("user joined", {
+  //     username: socket.username
+  //   })
+  // })
+
+  // socket.on('typing', () => {
+  //   socket.broadcast.emit('typing', {
+  //     username: socket.username
+  //   });
+  // });
+
+  // socket.on('typing', () => {
+  //   socket.broadcast.emit('typing', {
+  //     username: socket.username
+  //   });
+  // });
+
+  // socket.on('stop typing', () => {
+  //   socket.broadcast.emit('stop typing', {
+  //     username: socket.username
+  //   });
+  // });
+})    // end chat room setup
+
+
 //end socket.io setup
 
 // Define middleware here
