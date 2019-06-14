@@ -13,15 +13,15 @@ const io = socketIO(server)
 io.on("connection", socket => {
   console.log("socket connection 01")
   socket.on("message", body => {
+    console.log("server:", body)
     socket.broadcast.emit("message", {
       body,
-      from:socket.id.slice(8)
+      from: socket.id.slice(8)
     })
   })
 
   // socket.on("add user", (username) => {
   //   if (addedUser) return;
-
   //   socket.username = username;
   //   addedUser = true;
   //   socket.broadcast.emit("user joined", {
