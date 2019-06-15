@@ -22,12 +22,5 @@ module.exports = function(sequelize, DataTypes) {
     email: DataTypes.STRING
   });
 
-  // bands.associate = function(model) {
-  //   bands.hasMany(model.member, {
-  //     forgienKey: {
-  //       allowNull: false
-  //     }
-  //   });
-  // };
   return Bands;
 };
