@@ -2,6 +2,20 @@ const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
+var env = require("dotenv").config();
+
+//Models
+var models = require("./models");
+
+//Sync Database
+models.sequelize
+  .sync({ force: true })
+  .then(function() {
+    console.log("Nice! Database looks fine");
+  })
+  .catch(function(err) {
+    console.log(err, "Something went wrong with the Database Update!");
+  });
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -12,7 +26,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Define API routes here
-
+// app.use();
 // Send every other request to the React app
 // Define any API routes before this runs
 app.get("*", (req, res) => {
