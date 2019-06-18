@@ -12,12 +12,28 @@ const io = socketIO(server)
 // Chat room setup
 io.on("connection", socket => {
   console.log("socket connection 01")
+  // socket.on("message", body => {
+  //   console.log("server:", body)
+  //   socket.broadcast.emit("message", {
+  //     body,
+  //     from: socket.id.slice(8)
+  //   })
+  // })
+
   socket.on("message", body => {
     console.log("server:", body)
-    socket.broadcast.emit("message", {
-      body,
+    const message = body.message;
+    socket.to(body.room).emit("message", {
+      message,
       from: socket.id.slice(8)
     })
+  })
+
+
+  socket.on("join", body => {
+    console.log(body)
+    socket.join(body.room);
+    socket.broadcast.to(body.room).emit("user join", body.user)
   })
 
   // socket.on("add user", (username) => {
