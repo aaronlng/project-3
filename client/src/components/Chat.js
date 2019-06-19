@@ -1,5 +1,6 @@
 import React from "react"
 import io from "socket.io-client"
+import "./Chat.css"
 
 class Chat extends React.Component {
     constructor(props) {
@@ -8,6 +9,7 @@ class Chat extends React.Component {
             messages: [],
             user: "1",           // Modify user to become username of person logged in
             room: "",
+            chatMinimized: false,
         }
     }
 
@@ -51,8 +53,6 @@ class Chat extends React.Component {
             });
             event.target.value = ""
         }
-
-
     }
 
     testUser1 = () => {
@@ -73,21 +73,57 @@ class Chat extends React.Component {
         this.setState({ room: roomNum });
     }
 
+    toggleChat = () => {
+        console.log("toggle")
+        this.setState(prevState => ({
+            chatMinimized: !prevState.chatMinimized
+        }))
+    }
+
     renderChat = () => {
         const messages = this.state.messages.map((message, index) => {
             return <li key={index}><b>{message.from} :</b> {message.body}</li>
         })
 
-        if (this.state.room) {
+        if (this.state.room && !this.state.chatMinimized) {
             return (
-                <div>
-                    <h1>Chat room</h1>
-                    <input type="text" placeholder="enter a message" onKeyUp={this.handleSubmit} />
-                    {messages}
+                <div className="chat">
+                    <div className="chat-bar"><button onClick={this.toggleChat}>close</button></div>
+                    <div className="chat-box">
+                        <h1>Chat room</h1>
+                        <input type="text" placeholder="enter a message" onKeyUp={this.handleSubmit} />
+                        {messages}
+                    </div>
+                </div>
+            )
+        } else if (this.state.room && this.state.chatMinimized) {
+            return (
+                <div className="chat">
+                    <div className="chat-bar"><button onClick={this.toggleChat}>Open</button></div>
                 </div>
             )
         }
     }
+
+    // chatMinimize = (chatMinimized) => {
+    //     if (chatMinimized) {
+    //         return (
+    //             <div className="chat-bar"><button onClick={this.toggleChat}>close</button></div>
+    //         )
+    //     } else {
+    //         return (
+    //             <div>
+    //                 <div className="chat-bar"><button onClick={this.toggleChat}>close</button></div>
+    //                 <div className="chat-box">
+    //                     <h1>Chat room</h1>
+    //                     <input type="text" placeholder="enter a message" onKeyUp={this.handleSubmit} />
+    //                     {messages}
+    //                 </div>
+    //             </div>
+
+    //         )
+    //     }
+    // }
 
 
     render() {
@@ -97,6 +133,10 @@ class Chat extends React.Component {
 
         return (
             <div>
+                <button onClick={this.toggleChat}>toggle chat</button>
+
+
+
                 <button onClick={this.testUser1}>user1</button>
                 <button onClick={this.testUser2}>user2</button>
                 <button onClick={() => this.joinRoom("1")}>Join Room 1</button>

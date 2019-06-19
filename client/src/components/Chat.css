@@ -1,0 +1,16 @@
+.chat{
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+}
+
+.chat-box{
+    border-style: solid;
+    border-width: 3px;
+    position: relative;
+    bottom: 0px;
+    right: 0px;
+
+    width:600px;
+    height:400px;
+}
