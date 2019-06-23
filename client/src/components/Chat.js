@@ -1,6 +1,8 @@
-import React from "react"
+import React, { Component } from "react";
 import io from "socket.io-client"
 import "./Chat.css"
+import API from "../utils/API";
+
 
 class Chat extends React.Component {
     constructor(props) {
@@ -80,6 +82,16 @@ class Chat extends React.Component {
         }))
     }
 
+    apiTest = () => {
+        console.log("API test")
+        API.testChat()
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(err => console.log(err));
+    }
+
+
     renderChat = () => {
         const messages = this.state.messages.map((message, index) => {
             return <li key={index}><b>{message.from} :</b> {message.body}</li>
@@ -125,7 +137,6 @@ class Chat extends React.Component {
     //     }
     // }
 
-
     render() {
         const messages = this.state.messages.map((message, index) => {
             return <li key={index}><b>{message.from} :</b> {message.body}</li>
@@ -135,7 +146,7 @@ class Chat extends React.Component {
             <div>
                 <button onClick={this.toggleChat}>toggle chat</button>
 
-
+                <button onClick={this.apiTest}>API test</button>
 
                 <button onClick={this.testUser1}>user1</button>
                 <button onClick={this.testUser2}>user2</button>

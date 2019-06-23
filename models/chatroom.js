@@ -4,10 +4,11 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Chatroom.associate = function (models) {
-        Chatroom.hasMany(models.Message), {
+        Chatroom.hasMany(models.Message, {
             onDelete: "cascade"
-        }
-        Chatroom.belongsToMany(models.members, { through: "MembersId", as: "roomId" })
+        });
+
+        Chatroom.belongsToMany(models.members, { through: "MembersId" })
     }
 
     return Chatroom;
