@@ -2,6 +2,8 @@
 import React, { Component } from "react";
 import { SearchInput, SearchBtn, SearchSelect } from "./Search";
 import API from "../utils/API";
+import FileUpload from "./FileUpload";
+
 
 
 
@@ -26,6 +28,7 @@ class Home extends Component {
         API.getMembers()
             .then(res => { console.log(res) })
     }
+
 
     handleFormSubmit = event => {
         event.preventDefault();
@@ -92,6 +95,7 @@ class Home extends Component {
                     name="searchQuery"
                 />
                 <SearchBtn onClick={this.handleFormSubmit}>Find</SearchBtn>
+
             </div>
         )
     }

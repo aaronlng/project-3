@@ -1,5 +1,7 @@
 const express = require("express");
 const path = require("path");
+const cors = require("cors");
+const multer = require("multer");
 const PORT = process.env.PORT || 3001;
 const app = express();
 const routes = require("./routes")
@@ -83,16 +85,41 @@ const http = require("http");
 
   //end socket.io setup
 
-  // Define middleware here
-  app.use(express.urlencoded({ extended: true }));
-  app.use(express.json());
-  // Serve up static assets (usually on heroku)
-  if (process.env.NODE_ENV === "production") {
-    app.use(express.static("client/build"));
-  }
+// Define middleware here
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cors());
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 
-  // Define API routes here
-  app.use(routes)
+// Define API routes here
+app.use(routes)
+
+//set up multer
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./client/public/files")
+  },
+  filename: function (req,file,cb) {
+    cb(null, Date.now() + "-" + file.name)
+  }
+})
+
+var upload = multer({ storage: storage }).single("file");
+
+app.post("/upload", function(req,res) {
+  upload(req,res,function(err) {
+    console.log(res);
+      if (err instanceof multer.MulterError) {
+        return res.status(500).json(err)
+      } else if (err) {
+        return res.status(500).json(err)
+      }
+  return res.status(200).send(req.file)
+  });
+});
 
 
 
@@ -106,3 +133,9 @@ const http = require("http");
   server.listen(PORT, () => {
     console.log(`🌎 ==> API server now on port ${PORT}!`);
   });
+
+
+
+
+
+
