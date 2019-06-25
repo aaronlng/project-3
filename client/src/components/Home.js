@@ -1,5 +1,6 @@
 // Landing Page
 import React, { Component } from "react";
+import FileUpload from "./FileUpload";
 
 
 
@@ -10,7 +11,9 @@ class Home extends Component {
 
     render(){
         return(
-            <h1>Home Page</h1>
+            <div>
+                <h1>Home Page</h1>
+            </div>
         )
     }
 }
