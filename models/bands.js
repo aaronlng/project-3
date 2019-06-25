@@ -1,4 +1,5 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
+
   const Bands = sequelize.define("bands", {
     bandName: {
       type: DataTypes.STRING,
@@ -21,6 +22,14 @@ module.exports = function(sequelize, DataTypes) {
 
     email: DataTypes.STRING
   });
+
+
+  Bands.associate = function (models) {
+    Bands.hasMany(models.members, {
+        OnDelete:"cascade"
+    })
+  }
+
 
   return Bands;
 };

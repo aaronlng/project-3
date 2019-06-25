@@ -21,88 +21,88 @@ models.sequelize
 
 //setting up socket.io
 const http = require("http");
-const socketIO = require("socket.io");
-const server = http.createServer(app);
-const io = socketIO(server)
+  const socketIO = require("socket.io");
+  const server = http.createServer(app);
+  const io = socketIO(server)
 
-// Chat room setup
-io.on("connection", socket => {
-  console.log("socket connection 01")
-  // socket.on("message", body => {
-  //   console.log("server:", body)
-  //   socket.broadcast.emit("message", {
-  //     body,
-  //     from: socket.id.slice(8)
-  //   })
-  // })
+  // Chat room setup
+  io.on("connection", socket => {
+    console.log("socket connection 01")
+    // socket.on("message", body => {
+    //   console.log("server:", body)
+    //   socket.broadcast.emit("message", {
+    //     body,
+    //     from: socket.id.slice(8)
+    //   })
+    // })
 
-  socket.on("message", body => {
-    console.log("server:", body)
-    const message = body.message;
-    socket.to(body.room).emit("message", {
-      message,
-      from: socket.id.slice(8)
+    socket.on("message", body => {
+      console.log("server:", body)
+      const message = body.message;
+      socket.to(body.room).emit("message", {
+        message,
+        from: socket.id.slice(8)
+      })
     })
-  })
 
 
-  socket.on("join", body => {
-    console.log(body)
-    socket.join(body.room);
-    socket.broadcast.to(body.room).emit("user join", body.user)
-  })
+    socket.on("join", body => {
+      console.log(body)
+      socket.join(body.room);
+      socket.broadcast.to(body.room).emit("user join", body.user)
+    })
 
-  // socket.on("add user", (username) => {
-  //   if (addedUser) return;
-  //   socket.username = username;
-  //   addedUser = true;
-  //   socket.broadcast.emit("user joined", {
-  //     username: socket.username
-  //   })
-  // })
+    // socket.on("add user", (username) => {
+    //   if (addedUser) return;
+    //   socket.username = username;
+    //   addedUser = true;
+    //   socket.broadcast.emit("user joined", {
+    //     username: socket.username
+    //   })
+    // })
 
-  // socket.on('typing', () => {
-  //   socket.broadcast.emit('typing', {
-  //     username: socket.username
-  //   });
-  // });
+    // socket.on('typing', () => {
+    //   socket.broadcast.emit('typing', {
+    //     username: socket.username
+    //   });
+    // });
 
-  // socket.on('typing', () => {
-  //   socket.broadcast.emit('typing', {
-  //     username: socket.username
-  //   });
-  // });
+    // socket.on('typing', () => {
+    //   socket.broadcast.emit('typing', {
+    //     username: socket.username
+    //   });
+    // });
 
-  // socket.on('stop typing', () => {
-  //   socket.broadcast.emit('stop typing', {
-  //     username: socket.username
-  //   });
-  // });
-})    // end chat room setup
-
-
-//end socket.io setup
-
-// Define middleware here
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
-
-// Define API routes here
-app.use(routes)
+    // socket.on('stop typing', () => {
+    //   socket.broadcast.emit('stop typing', {
+    //     username: socket.username
+    //   });
+    // });
+  })    // end chat room setup
 
 
+  //end socket.io setup
 
-// app.use();
-// Send every other request to the React app
-// Define any API routes before this runs
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+  // Define middleware here
+  app.use(express.urlencoded({ extended: true }));
+  app.use(express.json());
+  // Serve up static assets (usually on heroku)
+  if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"));
+  }
 
-server.listen(PORT, () => {
-  console.log(`🌎 ==> API server now on port ${PORT}!`);
-});
+  // Define API routes here
+  app.use(routes)
+
+
+
+  // app.use();
+  // Send every other request to the React app
+  // Define any API routes before this runs
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  });
+
+  server.listen(PORT, () => {
+    console.log(`🌎 ==> API server now on port ${PORT}!`);
+  });

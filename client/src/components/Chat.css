@@ -1,16 +1,59 @@
 .chat{
     position: fixed;
+    width:600px;
     bottom: 0px;
     right: 0px;
 }
 
 .chat-box{
     border-style: solid;
-    border-width: 3px;
+    border-width: 1px;
+    border-radius: 5px;
     position: relative;
     bottom: 0px;
     right: 0px;
-
     width:600px;
     height:400px;
+}
+
+.chat-bar{
+    position: absolute;
+    height:20px;
+    width:600px;
+    top:-21px;
+    border-width: 1px;
+    border-style:solid;
+    border-radius: 5px;
+}
+
+.chat-toggle-btn{
+    position: absolute;
+    right:0px
+}
+
+#chat-input{
+    position: absolute;
+    width:80%;
+    height: 30px;
+    font-size: 20px;
+    bottom: 0px;
+    padding:0px; 
+    border-radius: 5px;
+    border-style:solid;
+    border-width:1px;
+}
+
+#chat-send-btn{
+    position: absolute;
+    width:15%;
+    height:35px;
+    font-size: 20x;
+    bottom:0px;
+    right:0px;
+    border-radius:5px;
+}
+
+.chat-message{
+    list-style-type:none;
+    margin-left:10px
 }
