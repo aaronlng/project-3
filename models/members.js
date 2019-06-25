@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   const Members = sequelize.define("members", {
     FirstName: {
       type: DataTypes.STRING,
@@ -18,5 +18,11 @@ module.exports = function(sequelize, DataTypes) {
 
     email: DataTypes.STRING
   });
+
+  Members.associate = function (models) {
+    Members.hasMany(models.Message), {
+    }
+  }
+
   return Members;
 };
