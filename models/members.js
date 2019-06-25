@@ -1,5 +1,11 @@
 module.exports = function (sequelize, DataTypes) {
   const Members = sequelize.define("members", {
+    id: {
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
+
     FirstName: {
       type: DataTypes.STRING,
       allowNull: false
@@ -16,7 +22,20 @@ module.exports = function (sequelize, DataTypes) {
 
     experience: DataTypes.STRING,
 
-    email: DataTypes.STRING
+    email: {
+      type: DataTypes.STRING,
+      validate: {
+        isEmail: true
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    status: {
+      type: DataTypes.ENUM("active", "inactive"),
+      defaultValue: "active"
+    }
   });
 
   Members.associate = function (models) {

@@ -1,5 +1,11 @@
 module.exports = function(sequelize, DataTypes) {
   const Bands = sequelize.define("bands", {
+    id: {
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
+
     bandName: {
       type: DataTypes.STRING,
       allowNull: false
@@ -19,7 +25,27 @@ module.exports = function(sequelize, DataTypes) {
       // }
     },
 
-    email: DataTypes.STRING
+    members: {
+      type: DataTypes.STRING
+    },
+
+    email: {
+      type: DataTypes.STRING,
+      validate: {
+        isEmail: true
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    decrypter: {
+      type: DataTypes.STRING
+    },
+    status: {
+      type: DataTypes.ENUM("active", "inactive"),
+      defaultValue: "active"
+    }
   });
 
   return Bands;
