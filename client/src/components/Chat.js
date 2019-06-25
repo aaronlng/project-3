@@ -10,6 +10,7 @@ class Chat extends React.Component {
         this.state = {
             messages: [],
             user: "1",           // Modify user to become username of person logged in
+            userid: "",
             room: "",
             chatMinimized: false,
         }
@@ -94,24 +95,25 @@ class Chat extends React.Component {
 
     renderChat = () => {
         const messages = this.state.messages.map((message, index) => {
-            return <li key={index}><b>{message.from} :</b> {message.body}</li>
+            return <li key={index} className="chat-message"><b>{message.from} :</b> {message.body}</li>
         })
 
-        if (this.state.room && !this.state.chatMinimized) {
+        if (!this.state.chatMinimized) {
             return (
                 <div className="chat">
-                    <div className="chat-bar"><button onClick={this.toggleChat}>close</button></div>
+                    <div className="chat-bar"><button className="chat-toggle-btn" onClick={this.toggleChat}>close</button></div>
                     <div className="chat-box">
                         <h1>Chat room</h1>
-                        <input type="text" placeholder="enter a message" onKeyUp={this.handleSubmit} />
+                        <input id="chat-input" type="text" placeholder="enter a message" onKeyUp={this.handleSubmit} />
+                        <button id="chat-send-btn" onClick={this.handleSubmit}>Send</button>
                         {messages}
                     </div>
                 </div>
             )
-        } else if (this.state.room && this.state.chatMinimized) {
+        } else if (this.state.chatMinimized) {
             return (
                 <div className="chat">
-                    <div className="chat-bar"><button onClick={this.toggleChat}>Open</button></div>
+                    <div className="chat-bar"><button className="chat-toggle-btn" onClick={this.toggleChat}>Open</button></div>
                 </div>
             )
         }
@@ -144,14 +146,14 @@ class Chat extends React.Component {
 
         return (
             <div>
-                <button onClick={this.toggleChat}>toggle chat</button>
+                {/* <button onClick={this.toggleChat}>toggle chat</button>
 
                 <button onClick={this.apiTest}>API test</button>
 
                 <button onClick={this.testUser1}>user1</button>
                 <button onClick={this.testUser2}>user2</button>
                 <button onClick={() => this.joinRoom("1")}>Join Room 1</button>
-                <button onClick={() => this.joinRoom("2")}>Join Room 2</button>
+                <button onClick={() => this.joinRoom("2")}>Join Room 2</button> */}
 
                 {/* <h1>Chat room</h1>
                 <input type="text" placeholder="enter a message" onKeyUp={this.handleSubmit} />

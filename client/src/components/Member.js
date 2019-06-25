@@ -4,11 +4,15 @@ import React, { Component } from "react";
 
 class Member extends Component {
     state = {
+        members: [],
+    }
+
+    loadMember = () => {
         
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <h1>Member</h1>
         )
     }

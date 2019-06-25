@@ -10,6 +10,20 @@ import logo from './images/logo.png'
 import M from 'materialize-css'
 import Post from './components/post.js'
 
+import Member from "./components/Member"
+import Profile from "./components/Profile"
+
+// class App extends Component {
+//   render() {
+//     return (
+//       <div className="App">
+//         {/* <Chat /> */}
+//         <h1>test</h1>
+//       </div>
+//     );
+//   }
+// }
+
 class App extends Component {
   render() {
     return (
@@ -36,8 +50,10 @@ class App extends Component {
           <Route exact path="/" component={Home}></Route>
           <Route exact path="/band/:id" component={Band}></Route>
           <Route exact path="/member/:id" component={Member}></Route>
+          <Route exact path="/profile/:id" component={Profile}></Route>
 
         </Switch>
+        <Chat></Chat>
       </Router >
   </div>
     );

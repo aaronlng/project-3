@@ -1,6 +1,7 @@
 const db = require("../models");
 
 module.exports = {
+
   findTest: function (req, res) {
     console.log("inside controller")
     db.members.findAll({})

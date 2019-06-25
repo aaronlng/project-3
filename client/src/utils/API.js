@@ -2,14 +2,50 @@ import axios from "axios";
 
 export default {
 
-    testChat: function(){
-        console.log("API folder linkded")
-        return axios.get("api/chat")
+    testChat: function () {
+        return axios.get("/api/chat")
     },
 
     getChat: function (id) {
-        return axios.get("api/chat/" + id)
+        return axios.get("/api/chat/" + id)
+    },
+
+    createMember: function (memberData) {
+        // Post route to create member information
+        return axios.post("../api/member", memberData)
+    },
+
+    getMembers: function () {
+        return axios.get("/api/member")
+    },
+
+    getMembersByName: function (name) {
+        return axios.get("/api/membername/" + name)
+    },
+
+    getMembersByGenre: function (genre) {
+        return axios.get("/api/membergenre/" + genre)
+    },
+
+    getBandsByName: function (name) {
+        return axios.get("api/bandname/" + name)
+    },
+
+    getBandsByGenre: function (genre) {
+        return axios.get("api/bandgenre/" + genre)
+    },
+
+    getBands: function () {
+
+        return axios.get("/api/bands")
+    },
+
+    getProfile: function (id) {
+        // post route to get a single member profile
+        return axios.get("../api/member/" + id)
     }
+
+
 
 
     // Eamplex
