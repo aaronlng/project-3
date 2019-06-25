@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   const Members = sequelize.define("members", {
     id: {
       autoIncrement: true,
@@ -37,5 +37,11 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: "active"
     }
   });
+
+  Members.associate = function (models) {
+    Members.hasMany(models.Message), {
+    }
+  }
+
   return Members;
 };

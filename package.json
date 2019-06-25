@@ -33,5 +33,17 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "sequelize": "^5.8.9"
+    "axios": "^0.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
+    "express": "^4.16.3",
+    "express-router": "0.0.1",
+    "if-env": "^1.0.4",
+    "multer": "^1.4.1",
+    "mysql2": "^1.6.5",
+    "react": "^16.8.6",
+    "react-router-dom": "^5.0.1",
+    "sequelize": "^5.8.9",
+    "socket.io": "^2.2.0"
   }
 }
