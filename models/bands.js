@@ -1,4 +1,5 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
+
   const Bands = sequelize.define("bands", {
     id: {
       autoIncrement: true,
@@ -47,6 +48,14 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: "active"
     }
   });
+
+
+  Bands.associate = function (models) {
+    Bands.hasMany(models.members, {
+        OnDelete:"cascade"
+    })
+  }
+
 
   return Bands;
 };

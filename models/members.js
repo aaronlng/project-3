@@ -39,9 +39,18 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   Members.associate = function (models) {
-    Members.hasMany(models.Message), {
-    }
+    Members.hasMany(models.Message)
   }
+  Members.associate = function (models) {
+    Members.belongsTo(models.bands, {
+      foreignKey: {
+        allowNull: true
+      },
+      onDelete: "cascade"
+    });
+  }
+
+
 
   return Members;
 };
