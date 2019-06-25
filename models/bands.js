@@ -39,6 +39,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
+    decrypter: {
+      type: DataTypes.STRING
+    },
     status: {
       type: DataTypes.ENUM("active", "inactive"),
       defaultValue: "active"

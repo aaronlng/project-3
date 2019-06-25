@@ -9,10 +9,9 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 
 //Models
-var models = require("./models");
 
 //Sync Database
-models.sequelize
+db.sequelize
   .sync({ force: true })
   .then(function() {
     console.log("Nice! Database looks fine");
@@ -24,6 +23,15 @@ models.sequelize
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(
+  session({
+    secret: "theTea",
+    saveUninitialized: false,
+    resave: true
+  })
+);
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -31,6 +39,12 @@ if (process.env.NODE_ENV === "production") {
 
 // Define API routes here
 // app.use();
+const authRoute = require("./routes/auth");
+
+//passport stratagies
+require("./config/bandPassport")(passport, db.bands);
+require("./config/memberPassport")(passport, db.members);
+
 // Send every other request to the React app
 // Define any API routes before this runs
 app.get("*", (req, res) => {

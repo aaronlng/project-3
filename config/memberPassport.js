@@ -32,9 +32,9 @@ module.exports = function(passport, member) {
               message: "That email is already taken"
             });
           } else {
-            var userPassword = generateHash(password);
+            const userPassword = generateHash(password);
 
-            var data = {
+            const data = {
               email: email,
 
               password: userPassword,
