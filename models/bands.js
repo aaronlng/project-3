@@ -1,5 +1,4 @@
-module.exports = function (sequelize, DataTypes) {
-
+module.exports = function(sequelize, DataTypes) {
   const Bands = sequelize.define("bands", {
     id: {
       autoIncrement: true,
@@ -25,11 +24,6 @@ module.exports = function (sequelize, DataTypes) {
       //   return this.setDataValue("myArrayField", JSON.stringify(val));
       // }
     },
-
-    members: {
-      type: DataTypes.STRING
-    },
-
     email: {
       type: DataTypes.STRING,
       validate: {
@@ -48,14 +42,18 @@ module.exports = function (sequelize, DataTypes) {
       defaultValue: "active"
     }
   });
+  Bands.associate = function(post) {
+    Bands.hasMany(models.Post);
+  };
+  Bands.associate = function(models) {
+    Bands.hasMany(models.Comments);
+  };
 
-
-  Bands.associate = function (models) {
+  Bands.associate = function(models) {
     Bands.hasMany(models.members, {
-        OnDelete:"cascade"
-    })
-  }
-
+      OnDelete: "cascade"
+    });
+  };
 
   return Bands;
 };

@@ -1,4 +1,4 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   const Members = sequelize.define("members", {
     id: {
       autoIncrement: true,
@@ -6,11 +6,7 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.INTEGER
     },
 
-    FirstName: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    LastName: {
+    fullName: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -38,19 +34,23 @@ module.exports = function (sequelize, DataTypes) {
     }
   });
 
-  Members.associate = function (models) {
-    Members.hasMany(models.Message)
-  }
-  Members.associate = function (models) {
+  Members.associate = function(models) {
+    Members.hasMany(models.Message);
+  };
+  Members.associate = function(models) {
+    Members.hasMany(models.Post);
+  };
+  Members.associate = function(models) {
+    Members.hasMany(models.Comments);
+  };
+  Members.associate = function(models) {
     Members.belongsTo(models.bands, {
       foreignKey: {
         allowNull: true
       },
       onDelete: "cascade"
     });
-  }
-
-
+  };
 
   return Members;
 };
