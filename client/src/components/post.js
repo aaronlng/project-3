@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import img from '../images/download.png'
-export default class post extends Component {
+export default class Post extends Component {
     render() {
         return (
             <div className='container'>

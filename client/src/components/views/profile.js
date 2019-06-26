@@ -7,8 +7,7 @@ import API from "../../utils/API";
 export default class Profile extends Component {
 
     state = {
-        firstName: "Kevin2",
-        lastName: "Wang",
+        fullName: "",
         bio: "asdf",
         genres: "guitar",
         experience: "none",
@@ -23,10 +22,10 @@ export default class Profile extends Component {
         API.getProfile("2")  // set the parameter to user id of login
             .then(
                 res => {
+                    console.log(res)
                     this.setState(
                         {
-                            firstName: res.data.FirstName,
-                            lastName: res.data.LastName,
+                            fullName: res.data.fullName,
                             bio: res.data.bio,
                             genres: res.data.genres,
                             experience: res.data.experience,
@@ -41,8 +40,7 @@ export default class Profile extends Component {
 
     createMember = () => {
         const memberData = {
-            FirstName: this.state.firstName,
-            LastName: this.state.lastName,
+            fullName: this.state.fullName,
             bio: this.state.bio,
             genres: this.state.genres,
             experience: this.state.experience,
@@ -65,8 +63,9 @@ export default class Profile extends Component {
                             <p>
                                 Guitarest with a passion for all
                                 music!
-                    </p>
+                             </p>
                         </div>
+                        <button onClick={this.loadMember}> load member test</button>
 
                     </div>
                 </div>

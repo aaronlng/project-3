@@ -78,24 +78,36 @@ class Home extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <h1>Home Page</h1>
-                <SearchSelect
-                    onChange={this.handleInputChange}
-                    name="queryType"
-                >
-                    <option>Band by Name</option>
-                    <option>Band by Genre</option>
-                    <option>Member by Name</option>
-                    <option>Member by Genre</option>
-                </SearchSelect>
+
                 <p>(Testing) Current Query Type: {this.state.queryType}</p>
 
-                <SearchInput
-                    onChange={this.handleInputChange}
-                    name="searchQuery"
-                />
-                <SearchBtn onClick={this.handleFormSubmit}>Find</SearchBtn>
+                <h4>Find more bands and members</h4>
+                <div className="row">
+                    <div className="col s3">
+                        <SearchSelect
+                            onChange={this.handleInputChange}
+                            name="queryType"
+                        >
+                            <option>Band by Name</option>
+                            <option>Band by Genre</option>
+                            <option>Member by Name</option>
+                            <option>Member by Genre</option>
+                        </SearchSelect>
+                    </div>
+                    <div className="col s7">
+                        <SearchInput
+                            onChange={this.handleInputChange}
+                            name="searchQuery"
+                            className="search-input"
+                            placeholder="Search for a Band or Band Member"
+                        />
+                    </div>
+                    <div className="col s2">
+                        <SearchBtn className="btn" onClick={this.handleFormSubmit}>Find</SearchBtn>
+                    </div>
+                </div>
 
             </div>
         )

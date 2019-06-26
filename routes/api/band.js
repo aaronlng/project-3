@@ -8,5 +8,6 @@ router.route("/")
 // Matches with api/chat/:id
 router
     .route("/:id")
+    .get(bandController.findById)
 
 module.exports = router;

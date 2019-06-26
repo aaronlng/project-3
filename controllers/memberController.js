@@ -12,6 +12,7 @@ module.exports = {
   },
 
   findById: function (req, res) {
+    console.log("reached here")
     db.members
       .findOne({
         where: { id: req.params.id }
@@ -25,11 +26,7 @@ module.exports = {
       .findAll({
         where: {
           // FirstName: {[Op.like]:`%`+req.params.query+ `%` }
-          [Op.or]: [{
-            FirstName: { [Op.like]: `%` + req.params.query + `%` }
-          }, {
-            LastName: { [Op.like]: `%` + req.params.query + `%` }
-          }]
+            fullName: { [Op.like]: `%` + req.params.query + `%` }
         }
       })
       .then(dbmembers => res.json(dbmembers))

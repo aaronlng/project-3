@@ -24,14 +24,14 @@ module.exports = function(sequelize, DataTypes) {
         isEmail: true
       }
     },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    status: {
-      type: DataTypes.ENUM("active", "inactive"),
-      defaultValue: "active"
-    }
+    // password: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false
+    // },
+    // status: {
+    //   type: DataTypes.ENUM("active", "inactive"),
+    //   defaultValue: "active"
+    // }
   });
 
   Members.associate = function(models) {
