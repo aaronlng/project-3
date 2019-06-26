@@ -26,10 +26,6 @@ module.exports = function (sequelize, DataTypes) {
       // }
     },
 
-    members: {
-      type: DataTypes.STRING
-    },
-
     email: {
       type: DataTypes.STRING,
       validate: {

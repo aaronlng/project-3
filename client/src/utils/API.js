@@ -43,6 +43,10 @@ export default {
     getProfile: function (id) {
         // post route to get a single member profile
         return axios.get("../api/member/" + id)
+    },
+
+    fileUpload: function (data){
+        return axios.post("../api/upload",data)
     }
 
 
