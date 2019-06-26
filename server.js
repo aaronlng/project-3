@@ -28,11 +28,12 @@ db.sequelize
 const http = require("http");
 const socketIO = require("socket.io");
 const server = http.createServer(app);
-const io = socketIO(server);
+
+const io = socketIO(server)
 
 // Chat room setup
 io.on("connection", socket => {
-  console.log("socket connection 01");
+  console.log("socket connection 01")
   // socket.on("message", body => {
   //   console.log("server:", body)
   //   socket.broadcast.emit("message", {
@@ -42,7 +43,7 @@ io.on("connection", socket => {
   // })
 
   socket.on("message", body => {
-    console.log("server:", body);
+    console.log("server:", body)
     const message = body.message;
     socket.to(body.room).emit("message", {
       message,
@@ -131,6 +132,7 @@ app.post("/upload", function(req, res) {
   });
 });
 
+
 // app.use();
 const authRoute = require("./routes/auth");
 
@@ -144,12 +146,21 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-// db.sequelize.sync({ force: false }).then(function() {
-//   server.listen(PORT, function() {
-//     console.log(`🌎 ==> API server now on port ${PORT}!`);
+// db.sequelize.sync({ force: false }).then(function () {
+//   server.listen(PORT, function () {
+//     console.log("App listening on PORT " + PORT);
 //   });
 // });
 
-server.listen(PORT, function() {
+
+
+// app.use();
+// Send every other request to the React app
+// Define any API routes before this runs
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
+
+server.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
 });

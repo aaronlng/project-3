@@ -90,6 +90,7 @@ class Home extends Component {
                     <option>Member by Genre</option>
                 </SearchSelect>
                 <p>(Testing) Current Query Type: {this.state.queryType}</p>
+
                 <SearchInput
                     onChange={this.handleInputChange}
                     name="searchQuery"

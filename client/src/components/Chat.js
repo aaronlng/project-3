@@ -12,7 +12,7 @@ class Chat extends React.Component {
             user: "1",           // Modify user to become username of person logged in
             userid: "",
             room: "",
-            chatMinimized: false,
+            chatMinimized: true,
         }
     }
 
