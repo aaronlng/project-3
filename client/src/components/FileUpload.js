@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import API from "../utils/API"
 
 class FileUpload extends Component {
     constructor(props) {
@@ -18,9 +19,10 @@ class FileUpload extends Component {
 
     onClickHandler = () => {
         const data = new FormData()
-        data.append("file", this.state.selectedFile)
-        axios.post("http://localhost:3000/upload", data)
-            .then(res => console.log(res.statusText))
+        data.append("file", this.state.selectedFile);
+        API.fileUpload(data)
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
     }
 
     render() {

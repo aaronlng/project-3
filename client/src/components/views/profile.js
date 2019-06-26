@@ -1,24 +1,64 @@
 import React, { Component } from 'react'
 import proimg from '../imgs/profile.png'
-export default class profile extends Component {
+import FileUpload from "../FileUpload"
+import API from "../../utils/API";
+
+
+export default class Profile extends Component {
+
+    state = {
+        firstName: "Kevin2",
+        lastName: "Wang",
+        bio: "asdf",
+        genres: "guitar",
+        experience: "none",
+        email: "asdf@asdf.com",
+    }
+
+    componentDidMount() {
+        this.loadMember()
+    }
+
+    loadMember = () => {
+        API.getProfile("2")  // set the parameter to user id of login
+            .then(
+                res => {
+                    this.setState(
+                        {
+                            firstName: res.data.FirstName,
+                            lastName: res.data.LastName,
+                            bio: res.data.bio,
+                            genres: res.data.genres,
+                            experience: res.data.experience,
+                            email: res.data.email
+                        }
+                    )
+                }
+            )
+            .catch(err => console.log(err));
+
+    }
+
+    createMember = () => {
+        const memberData = {
+            FirstName: this.state.firstName,
+            LastName: this.state.lastName,
+            bio: this.state.bio,
+            genres: this.state.genres,
+            experience: this.state.experience,
+            email: this.state.email
+        }
+
+        API.createMember(memberData)
+    }
+
     render() {
         return (
             <div>
-                <nav>
-                    <div className="nav-wrapper">
-                        <img src={logo} a href="#" />
-                        <ul id="nav-mobile" className="right hide-on-med-and-down">
-                            <li><a href="sass.html">Sass</a></li>
-                            <li><a href="badges.html">Components</a></li>
-                            <li><a href="collapsible.html">JavaScript</a></li>
-                        </ul>
-                    </div>
-                </nav>
-
                 <div className='container'>
                     <div className='section'>
                         <div className='col s4'>
-                            <img src={proimg}></img>
+                            {/* <img src={proimg}></img> */}
                         </div>
                         <div className='col s8'>
                             <h1>Nate B</h1>
@@ -30,6 +70,7 @@ export default class profile extends Component {
 
                     </div>
                 </div>
+                <FileUpload></FileUpload>
             </div>
         )
     }
