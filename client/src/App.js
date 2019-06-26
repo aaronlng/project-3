@@ -52,8 +52,6 @@ class App extends Component {
             <Route exact path="/post" component={Post}></Route>
 
           </Switch>
-          <a className="btn" onClick={()=>{console.log("1")}}>asdfadsfff</a>
-          <input></input>
           <Chat></Chat>
         </Router >
       </div>

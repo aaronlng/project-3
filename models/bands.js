@@ -30,17 +30,17 @@ module.exports = function(sequelize, DataTypes) {
         isEmail: true
       }
     },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    decrypter: {
-      type: DataTypes.STRING
-    },
-    status: {
-      type: DataTypes.ENUM("active", "inactive"),
-      defaultValue: "active"
-    }
+    // password: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false
+    // },
+    // decrypter: {
+    //   type: DataTypes.STRING
+    // },
+    // status: {
+    //   type: DataTypes.ENUM("active", "inactive"),
+    //   defaultValue: "active"
+    // }
   });
   Bands.associate = function(post) {
     Bands.hasMany(models.Post);

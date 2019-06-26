@@ -1,8 +1,9 @@
 import React from "react";
+import "./style.css"
 
 export function SearchInput(props) {
     return (
-        <div>
+        <div >
             <input {...props} />
         </div>
     )
@@ -10,17 +11,18 @@ export function SearchInput(props) {
 
 export function SearchBtn(props) {
     return (
-        <button {...props}>
+        <a {...props}>
             {props.children}
-        </button>
+        </a>
     )
 }
 
 export function SearchSelect(props) {
     return (
-        <select {...props}>
-            {props.children}
-        </select>
+        <div>
+            <select className="browser-default" {...props}>
+                {props.children}
+            </select>
+        </div>
     )
-
 }

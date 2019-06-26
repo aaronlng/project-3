@@ -1,0 +1,9 @@
+.search-input{
+    width:300px;
+    position: relative;
+
+}
+
+.query-label{
+    font-size:20px;
+}

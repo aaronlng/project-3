@@ -1,19 +1,28 @@
 // Page that renders Members information
 import React, { Component } from "react";
-
+import API from "../../utils/API"
 
 class Member extends Component {
     state = {
-        members: [],
+        memberData: {},
     }
 
-    loadMember = () => {
-        
+    componentDidMount() {
+        this.loadMember("1")
+    }
+
+    loadMember = (id) => {
+        API.getMemberById(id)
+            .then(res => this.setState({ memberData: res.data }));
     }
 
     render() {
         return (
-            <h1>Member</h1>
+            <div>
+                <h1>Member: {this.state.memberData.fullName}</h1>
+                
+                <button onClick={() => this.loadMember("1")} > api test</button>
+            </div>
         )
     }
 }

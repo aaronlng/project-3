@@ -19,6 +19,15 @@ export default {
         return axios.get("/api/member")
     },
 
+    getMemberById: function (id) {
+        console.log("in this funciton")
+        return axios.get("/api/member/"+id)  
+    },
+
+    getBandById: function (id) {
+        return axios.get("/api/band/"+id)  
+    },
+
     getMembersByName: function (name) {
         return axios.get("/api/membername/" + name)
     },
@@ -36,7 +45,6 @@ export default {
     },
 
     getBands: function () {
-
         return axios.get("/api/bands")
     },
 
@@ -45,8 +53,8 @@ export default {
         return axios.get("../api/member/" + id)
     },
 
-    fileUpload: function (data){
-        return axios.post("../api/upload",data)
+    fileUpload: function (data) {
+        return axios.post("../api/upload", data)
     }
 
 
