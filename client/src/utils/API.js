@@ -2,17 +2,17 @@ import axios from "axios";
 
 export default {
 
-    testChat: function () {
-        return axios.get("/api/chat")
-    },
-
-    getChat: function (id) {
-        return axios.get("/api/chat/" + id)
+    getBandMessage: function(id){
+        return axios.get("../api/message/"+id)
     },
 
     createMember: function (memberData) {
         // Post route to create member information
         return axios.post("../api/member", memberData)
+    },
+
+    postMessage: function (message) {
+        return axios.post("../api/message",message)
     },
 
     getMembers: function () {
@@ -21,11 +21,11 @@ export default {
 
     getMemberById: function (id) {
         console.log("in this funciton")
-        return axios.get("/api/member/"+id)  
+        return axios.get("/api/member/" + id)
     },
 
     getBandById: function (id) {
-        return axios.get("/api/band/"+id)  
+        return axios.get("/api/band/" + id)
     },
 
     getMembersByName: function (name) {

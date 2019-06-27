@@ -2,26 +2,26 @@ const db = require("../models");
 
 module.exports = {
 
-  findTest: function (req, res) {
-    console.log("inside controller")
-    db.members.findAll({})
-      .then(dbchatroom => res.json(dbchatroom))
+  createMessage: function (req, res) {
+    //to Message is for band
+    console.log("inside create message")
+    db.Message.create(req.body)
+      .then(dbMessage => res.json(dbMessage))
       .catch(err => res.status(422).json(err));
   },
 
-  create: function (req, res) {
-    db.Chatroom.create()
-  },
-
-  findByID: function (req, res) {
-    db.Chatroom
-      .findOne(
+  findBandMessage: function (req, res) {
+    db.Message
+      .findAll(
         {
-          where: { id: req.body.id },
-          include: [db.Message],
+          // where: { ChatroomId: req.body.id },
         }
       )
       .then(dbchatroom => res.json(dbchatroom))
       .catch(err => res.status(422).json(err));
   },
+
+  createMemberMessage: function(req,res){
+
+  }
 };

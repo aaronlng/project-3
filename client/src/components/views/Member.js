@@ -9,18 +9,23 @@ class Member extends Component {
 
     componentDidMount() {
         this.loadMember("1")
+        console.log("props.id "+this.props.match.params.id)
     }
 
     loadMember = (id) => {
         API.getMemberById(id)
-            .then(res => this.setState({ memberData: res.data }));
+            .then(res => {
+                if (res.data) {
+                    this.setState({ memberData: res.data })
+                }
+            });
     }
 
     render() {
         return (
             <div>
                 <h1>Member: {this.state.memberData.fullName}</h1>
-                
+
                 <button onClick={() => this.loadMember("1")} > api test</button>
             </div>
         )

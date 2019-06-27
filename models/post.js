@@ -5,19 +5,26 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    userName: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
+    // userName: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false
+    // },
     textBody: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    phone:{
+      type: DataTypes.STRING,
+      allowNull:false,
+    },
+    email:{
+      type:DataTypes.STRING
     }
   });
 
-  Post.associate = function(models) {
-    Post.hasMany(models.comments);
-  };
+  // Post.associate = function(models) {
+  //   Post.hasMany(models.comments);
+  // };
 
   return Post;
 };
