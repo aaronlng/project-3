@@ -2,7 +2,6 @@
 import React, { Component } from "react";
 import { SearchInput, SearchBtn, SearchSelect } from "./Search";
 import API from "../utils/API";
-import FileUpload from "./FileUpload";
 
 
 

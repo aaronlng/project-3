@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import proimg from '../imgs/profile.png'
-import FileUpload from "../FileUpload"
+import ImageUpload from "../ImageUpload"
 import API from "../../utils/API";
+
 
 
 export default class Profile extends Component {
@@ -69,7 +70,7 @@ export default class Profile extends Component {
 
                     </div>
                 </div>
-                <FileUpload></FileUpload>
+                <ImageUpload />
             </div>
         )
     }

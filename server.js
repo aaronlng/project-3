@@ -1,7 +1,5 @@
 const express = require("express");
 const path = require("path");
-const multer = require('multer');
-const cors = require('cors');
 const PORT = process.env.PORT || 3001;
 const app = express();
 const routes = require("./routes");
@@ -104,27 +102,6 @@ app.use(
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-
-//File upload test
-  app.use(express.static('public'))
-  app.use(cors());
-
-  var storage = multer.diskStorage({
-      destination: function (req, file, cb) {
-        cb(null, 'client/public/uploads')
-      },
-      filename: function (req, file, cb) {
-        cb(null, file.originalname)
-      }
-    })
-
-    var upload = multer({ storage: storage });
-   
-  
-
-app.post('/api/upload', upload.single('file'), function (req, res, next) {
-    res.redirect("/");
-  })
 
 // Define API routes here
 app.use(routes); 

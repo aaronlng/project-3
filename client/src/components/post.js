@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import img from '../images/download.png'
-import FileUpload from "./FileUpload";
+import ImageUpload from "./ImageUpload";
+import AudioUpload from "./AudioUpload";
 import MusicPlayer from './MusicPlayer';
 
 export default class Post extends Component {
@@ -24,7 +25,11 @@ export default class Post extends Component {
                 </div>
 
                 <div className='row'>
-                    <div className="col s6"><FileUpload /></div>
+                    <div className="col s6"><ImageUpload /></div>
+                </div>
+                <br />
+                <div className='row'>
+                    <div className="col s6"><AudioUpload /></div>
                     <div className="col s6"><MusicPlayer /></div>
                 </div>
             </div>
