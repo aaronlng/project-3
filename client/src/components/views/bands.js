@@ -233,13 +233,15 @@ export default class Bands extends Component {
 
         <div>
 
-          <button onClick={this.apiTest}>API test</button>
+          {/*
+          Debugging tools
+           <button onClick={this.apiTest}>API test</button>
 
           <button onClick={this.testUser1}>user1</button>
           <button onClick={this.testUser2}>user2</button>
           <button onClick={() => this.joinRoom("1")}>Join Room 1</button>
           <button onClick={() => this.joinRoom("2")}>Join Room 2</button>
-
+         */}
           {/* <h1>Chat room</h1>
             <input type="text" placeholder="enter a message" onKeyUp={this.handleSubmit} />
           {messages} */}

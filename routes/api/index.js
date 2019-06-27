@@ -8,6 +8,7 @@ const bandNameRoutes = require("./bandName");
 const bandGenreRoutes = require("./bandGenre");
 const uploadRoutes = require("./upload");
 const messageRoutes = require("./message")
+const postRoutes = require("./post")
 
 // Book routes
 router.use("/chat", chatRoutes);
@@ -17,8 +18,9 @@ router.use("/membername", memberNameRoutes);
 router.use("/membergenre", memberGenreRoutes);
 router.use("/bandname", bandNameRoutes);
 router.use("/bandgenre", bandGenreRoutes);
-router.use("/upload", uploadRoutes)
-router.use("/message", messageRoutes)
+router.use("/upload", uploadRoutes);
+router.use("/message", messageRoutes);
+router.use("/post", postRoutes);
 
 module.exports = router;
 

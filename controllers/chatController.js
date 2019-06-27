@@ -11,10 +11,11 @@ module.exports = {
   },
 
   findBandMessage: function (req, res) {
+    console.log(req.params.id)
     db.Message
       .findAll(
         {
-          // where: { ChatroomId: req.body.id },
+          where: { ChatroomId: req.params.id },
         }
       )
       .then(dbchatroom => res.json(dbchatroom))

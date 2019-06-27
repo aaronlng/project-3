@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   const Post = sequelize.define("post", {
     id: {
       autoIncrement: true,
@@ -9,16 +9,13 @@ module.exports = function(sequelize, DataTypes) {
     //   type: DataTypes.STRING,
     //   allowNull: false
     // },
-    textBody: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    phone:{
-      type: DataTypes.STRING,
-      allowNull:false,
-    },
-    email:{
-      type:DataTypes.STRING
+    description: {
+      type:DataTypes.STRING,
+      allowNull: false
     }
   });
 
