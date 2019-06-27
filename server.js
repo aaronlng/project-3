@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
-const cors = require("cors");
-const multer = require("multer");
+const multer = require('multer');
+const cors = require('cors');
 const PORT = process.env.PORT || 3001;
 const app = express();
 const routes = require("./routes");
@@ -99,39 +99,35 @@ app.use(
     resave: true
   })
 );
-app.use(cors());
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
+//File upload test
+  app.use(express.static('public'))
+  app.use(cors());
+
+  var storage = multer.diskStorage({
+      destination: function (req, file, cb) {
+        cb(null, 'client/public/uploads')
+      },
+      filename: function (req, file, cb) {
+        cb(null, file.originalname)
+      }
+    })
+
+    var upload = multer({ storage: storage });
+   
+  
+
+app.post('/api/upload', upload.single('file'), function (req, res, next) {
+    res.redirect("/");
+  })
+
 // Define API routes here
-app.use(routes);
-
-//set up multer
-var storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, "./client/public/files");
-  },
-  filename: function(req, file, cb) {
-    cb(null, Date.now() + "-" + file.name);
-  }
-});
-
-var upload = multer({ storage: storage }).single("file");
-
-app.post("/upload", function(req, res) {
-  upload(req, res, function(err) {
-    console.log(res);
-    if (err instanceof multer.MulterError) {
-      return res.status(500).json(err);
-    } else if (err) {
-      return res.status(500).json(err);
-    }
-    return res.status(200).send(req.file);
-  });
-});
-
+app.use(routes); 
 
 // app.use();
 const authRoute = require("./routes/auth");
@@ -142,21 +138,18 @@ require("./config/memberPassport")(passport, db.members);
 
 // Send every other request to the React app
 // Define any API routes before this runs
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
-
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
+// });
 // db.sequelize.sync({ force: false }).then(function () {
 //   server.listen(PORT, function () {
 //     console.log("App listening on PORT " + PORT);
 //   });
 // });
-
-
-
 // app.use();
 // Send every other request to the React app
 // Define any API routes before this runs
+
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });

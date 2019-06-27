@@ -1,39 +1,28 @@
-const multer = require("multer");
-const express = require("express");
-const cors = require("cors");
-const app = express();
+const express = require('express');
+const multer = require('multer');
+const cors = require('cors');
 const router = require("express").Router();
+const app = express();
 
+
+app.use(express.static('public'))
 app.use(cors());
 
-
-//set up multer
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "./client/public/files")
+      cb(null, '../../client/public/uploads')
     },
     filename: function (req, file, cb) {
-        cb(null, Date.now() + "-" + file.name)
+      cb(null, file.originalname)
     }
-})
+  })
 
-var upload = multer({ storage: storage }).single("file");
+  var upload = multer({ storage: storage })
+   
+  
 
-router
-    .route("/")
-    .post(upload);
+app.post('/api/upload', upload.single('file'), function (req, res, next) {
+    console.log("successful upload");
+  })
 
 module.exports = router;
-
-// app.post("./api/upload", function (req, res) {
-//     console.log("upload route hit")
-//     upload(req, res, function (err) {
-//         console.log(res);
-//         if (err instanceof multer.MulterError) {
-//             return res.status(500).json(err)
-//         } else if (err) {
-//             return res.status(500).json(err)
-//         }
-//         return res.status(200).send(req.file)
-//     });
-// });
