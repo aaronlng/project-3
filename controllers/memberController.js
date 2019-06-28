@@ -25,11 +25,7 @@ module.exports = {
       .findAll({
         where: {
           // FirstName: {[Op.like]:`%`+req.params.query+ `%` }
-          [Op.or]: [{
-            FirstName: { [Op.like]: `%` + req.params.query + `%` }
-          }, {
-            LastName: { [Op.like]: `%` + req.params.query + `%` }
-          }]
+            fullName: { [Op.like]: `%` + req.params.query + `%` }
         }
       })
       .then(dbmembers => res.json(dbmembers))

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+
 import Chat from "./components/Chat";
 import {
   BrowserRouter as Router,
@@ -16,6 +17,16 @@ import Member from "./components/views/Member";
 import Profile from "./components/views/profile";
 import Bands from "./components/views/bands";
 import Signup from "./components/login/signup";
+import Chat from "./components/Chat"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Home from "./components/Home"
+import 'materialize-css/dist/css/materialize.min.css'
+import M from 'materialize-css'
+import logo from './images/logo.png'
+import Post from './components/Post.js'
+import Member from "./components/views/Member"
+import Profile from "./components/views/Profile"
+import Bands from "./components/views/Bands"
 
 import { SearchInput, SearchBtn, SearchSelect } from "./components/Search";
 
@@ -72,6 +83,7 @@ class App extends Component {
           <input />
           <Chat />
         </Router>
+
       </div>
     );
   }

@@ -8,6 +8,7 @@ class Chat extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            messageBody: "",
             messages: [],
             user: "1",           // Modify user to become username of person logged in
             userid: "",
@@ -19,6 +20,8 @@ class Chat extends React.Component {
 
     componentDidMount() {
         this.socket = io("/")
+        console.log(this.props)
+        console.log("chat component mount")
 
         this.socket.on("message", message => {
             console.log(message)
@@ -28,7 +31,17 @@ class Chat extends React.Component {
         this.socket.on("user join", user => {
             console.log(user + " has joined")
         })
+
+
     }
+
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+    };
+
 
     handleSubmit = event => {
         // emit to all
@@ -43,7 +56,7 @@ class Chat extends React.Component {
         //     event.target.value = ""
         // }
 
-        const body = event.target.value
+        const body = this.state.messageBody
         if (event.keyCode === 13 && body) {
             const message = {
                 body,
@@ -54,9 +67,42 @@ class Chat extends React.Component {
                 message: message,
                 room: this.state.room
             });
-            event.target.value = ""
+
+            API.postMessage({
+                body: body,
+                from: this.state.user,
+                ChatroomId: this.state.room
+            })
+
+            this.state.messageBody = ""
         }
     }
+
+    handleClickSubmit = event => {
+        const body = this.state.messageBody
+        if (body) {
+            const message = {
+                body,
+                from: this.state.user
+            }
+            this.setState({ messages: [...this.state.messages, message] })
+            this.socket.emit("message", {
+                message: message,
+                room: this.state.room
+            });
+
+            API.postMessage({
+                body: body,
+                from: this.state.user,
+                ChatroomId: this.state.room
+            })
+
+            this.state.messageBody = ""
+        }
+
+    }
+
+
 
     testUser1 = () => {
         this.setState({ user: "1" })
@@ -104,8 +150,16 @@ class Chat extends React.Component {
                     <div className="chat-bar"><button className="chat-toggle-btn" onClick={this.toggleChat}>close</button></div>
                     <div className="chat-box">
                         <h1>Chat room</h1>
-                        <input id="chat-input" type="text" placeholder="enter a message" onKeyUp={this.handleSubmit} />
-                        <button id="chat-send-btn" onClick={this.handleSubmit}>Send</button>
+                        <input
+                            id="chat-input"
+                            type="text"
+                            placeholder="enter a message"
+                            onKeyUp={this.handleSubmit}
+                            onChange={this.handleInputChange}
+                            name="messageBody"
+                            value={this.state.messageBody}
+                        />
+                        <button id="chat-send-btn" onClick={this.handleClickSubmit}>Send</button>
                         {messages}
                     </div>
                 </div>
@@ -146,14 +200,13 @@ class Chat extends React.Component {
 
         return (
             <div>
-                {/* <button onClick={this.toggleChat}>toggle chat</button>
 
                 <button onClick={this.apiTest}>API test</button>
 
                 <button onClick={this.testUser1}>user1</button>
                 <button onClick={this.testUser2}>user2</button>
                 <button onClick={() => this.joinRoom("1")}>Join Room 1</button>
-                <button onClick={() => this.joinRoom("2")}>Join Room 2</button> */}
+                <button onClick={() => this.joinRoom("2")}>Join Room 2</button>
 
                 {/* <h1>Chat room</h1>
                 <input type="text" placeholder="enter a message" onKeyUp={this.handleSubmit} />

@@ -1,6 +1,6 @@
 .chat{
     position: fixed;
-    width:600px;
+    width:1400px;
     bottom: 0px;
     right: 0px;
 }
@@ -12,18 +12,19 @@
     position: relative;
     bottom: 0px;
     right: 0px;
-    width:600px;
+    width:1400px;
     height:400px;
 }
 
 .chat-bar{
     position: absolute;
-    height:20px;
-    width:600px;
-    top:-21px;
-    border-width: 1px;
-    border-style:solid;
+    height:30px;
+    width:1400px;
+    top:-30px;
+    border-width: 2px;
+    border-style:groove;
     border-radius: 5px;
+    background-color: lightblue;
 }
 
 .chat-toggle-btn{
@@ -41,6 +42,7 @@
     border-radius: 5px;
     border-style:solid;
     border-width:1px;
+    left: 10px;
 }
 
 #chat-send-btn{
@@ -48,7 +50,7 @@
     width:15%;
     height:35px;
     font-size: 20x;
-    bottom:0px;
+    bottom:10px;
     right:0px;
     border-radius:5px;
 }

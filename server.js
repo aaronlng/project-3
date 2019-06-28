@@ -1,7 +1,5 @@
 const express = require("express");
 const path = require("path");
-const cors = require("cors");
-const multer = require("multer");
 const PORT = process.env.PORT || 3001;
 const app = express();
 const routes = require("./routes");
@@ -101,13 +99,14 @@ app.use(
     resave: true
   })
 );
-app.use(cors());
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 } else {
   app.use(express.static("client/public"));
 }
+
 
 // Define API routes here
 app.use(routes);
@@ -140,6 +139,7 @@ app.post("/upload", function(req, res) {
   });
 });
 
+
 //passport stratagies
 require("./config/bandPassport")(passport, db.bands);
 require("./config/memberPassport")(passport, db.members);
@@ -150,12 +150,12 @@ require("./config/memberPassport")(passport, db.members);
 //   res.sendFile(path.join(__dirname, "/client/build/index.html"));
 // });
 
+
 // db.sequelize.sync({ force: false }).then(function () {
 //   server.listen(PORT, function () {
 //     console.log("App listening on PORT " + PORT);
 //   });
 // });
-
 // app.use();
 // Send every other request to the React app
 // Define any API routes before this runs

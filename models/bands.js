@@ -30,23 +30,27 @@ module.exports = function(sequelize, DataTypes) {
         isEmail: true
       }
     },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    decrypter: {
-      type: DataTypes.STRING
-    },
-    status: {
-      type: DataTypes.ENUM("active", "inactive"),
-      defaultValue: "active"
-    }
+    // password: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false
+    // },
+    // decrypter: {
+    //   type: DataTypes.STRING
+    // },
+    // status: {
+    //   type: DataTypes.ENUM("active", "inactive"),
+    //   defaultValue: "active"
+    // }
   });
-  Bands.associate = function(post) {
-    Bands.hasMany(models.Post);
+  Bands.associate = function(models) {
+    Bands.hasMany(models.post);
   };
   Bands.associate = function(models) {
-    Bands.hasMany(models.Comments);
+    Bands.hasMany(models.comments);
+  };
+
+  Bands.associate = function(models) {
+    Bands.hasOne(models.Chatroom);
   };
 
   Bands.associate = function(models) {
