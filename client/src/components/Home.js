@@ -8,6 +8,7 @@ import FileUpload from "./FileUpload";
 
 
 
+
 class Home extends Component {
     state = {
         searchQuery: "",

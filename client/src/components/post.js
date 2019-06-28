@@ -3,6 +3,9 @@ import img from '../images/download.png'
 import API from "../utils/API"
 import "./Post.css"
 import { Modal, Button, Card, Row, Col, Container, TextInput, Textarea } from 'react-materialize';
+import ImageUpload from "./ImageUpload";
+import AudioUpload from "./AudioUpload";
+import MusicPlayer from './MusicPlayer';
 
 
 export default class Post extends Component {
@@ -89,6 +92,7 @@ export default class Post extends Component {
 
         return (
 
+
             <Container>
                 <Row>
                     <Col s={12}>
@@ -153,3 +157,6 @@ export default class Post extends Component {
         )
     }
 }
+
+export { Post };
+
