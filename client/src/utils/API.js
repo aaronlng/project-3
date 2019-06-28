@@ -57,7 +57,7 @@ export default {
 
   tryslash: function() {
     return axios.get("/");
-  }
+  },
 
   // Eamplex
   //   // Gets all books
@@ -77,81 +77,79 @@ export default {
   //     return axios.post("/api/books", bookData);
   //   }
 
+  getBandMessage: function(id) {
+    return axios.get("../api/message/" + id);
+  },
 
-    getBandMessage: function (id) {
-        return axios.get("../api/message/" + id)
-    },
+  getMemberMessage: function(id) {
+    console.log("membermessage api");
+    return axios.get("../api/membermessage/" + id);
+  },
 
-    getMemberMessage: function(id){
-        console.log("membermessage api")
-        return axios.get("../api/membermessage/" +id)
-    },
+  createMember: function(memberData) {
+    // Post route to create member information
+    return axios.post("../api/member", memberData);
+  },
 
-    createMember: function (memberData) {
-        // Post route to create member information
-        return axios.post("../api/member", memberData)
-    },
+  postMessage: function(message) {
+    return axios.post("../api/message", message);
+  },
 
-    postMessage: function (message) {
-        return axios.post("../api/message", message)
-    },
+  postMemberMessage: function(message) {
+    return axios.post("../api/membermessage", message);
+  },
 
-    postMemberMessage: function(message){
-        return axios.post("../api/membermessage",message)
-    },
+  getMembers: function() {
+    return axios.get("/api/member");
+  },
 
-    getMembers: function () {
-        return axios.get("/api/member")
-    },
+  getMemberById: function(id) {
+    console.log("in this funciton");
+    return axios.get("/api/member/" + id);
+  },
 
-    getMemberById: function (id) {
-        console.log("in this funciton")
-        return axios.get("/api/member/" + id)
-    },
+  getBandById: function(id) {
+    return axios.get("/api/band/" + id);
+  },
 
-    getBandById: function (id) {
-        return axios.get("/api/band/" + id)
-    },
+  getMemberById: function(id) {
+    return axios.get("/api/member/" + id);
+  },
 
-    getMemberById: function(id){
-        return axios.get("/api/member/" + id)
-    },
+  getMembersByName: function(name) {
+    return axios.get("/api/membername/" + name);
+  },
 
-    getMembersByName: function (name) {
-        return axios.get("/api/membername/" + name)
-    },
+  getMembersByGenre: function(genre) {
+    return axios.get("/api/membergenre/" + genre);
+  },
 
-    getMembersByGenre: function (genre) {
-        return axios.get("/api/membergenre/" + genre)
-    },
+  getBandsByName: function(name) {
+    return axios.get("api/bandname/" + name);
+  },
 
-    getBandsByName: function (name) {
-        return axios.get("api/bandname/" + name)
-    },
+  getBandsByGenre: function(genre) {
+    return axios.get("api/bandgenre/" + genre);
+  },
 
-    getBandsByGenre: function (genre) {
-        return axios.get("api/bandgenre/" + genre)
-    },
+  getBands: function() {
+    return axios.get("/api/bands");
+  },
 
-    getBands: function () {
-        return axios.get("/api/bands")
-    },
+  getProfile: function(id) {
+    // post route to get a single member profile
+    return axios.get("../api/member/" + id);
+  },
 
-    getProfile: function (id) {
-        // post route to get a single member profile
-        return axios.get("../api/member/" + id)
-    },
+  fileUpload: function(data) {
+    return axios.post("../api/upload", data);
+  },
 
-    fileUpload: function (data) {
-        return axios.post("../api/upload", data)
-    },
+  createPost: function(data) {
+    return axios.post("../api/post", data);
+  },
 
-    createPost: function (data) {
-        return axios.post("../api/post", data)
-    },
-
-    getPost: function(){
-        return axios.get("../api/post")
-    }
-
+  getPost: function() {
+    return axios.get("../api/post");
+  }
 };
