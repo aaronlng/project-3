@@ -107,26 +107,10 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/public"));
 }
 
-
 // Define API routes here
 app.use(routes);
 
 generateSingupRoutes(app, passport);
-
-//
-
-//set up multer
-var storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, "./client/public/files");
-  },
-  filename: function(req, file, cb) {
-    cb(null, Date.now() + "-" + file.name);
-  }
-});
-
-var upload = multer({ storage: storage }).single("file");
-
 app.post("/upload", function(req, res) {
   upload(req, res, function(err) {
     console.log(res);
@@ -139,7 +123,6 @@ app.post("/upload", function(req, res) {
   });
 });
 
-
 //passport stratagies
 require("./config/bandPassport")(passport, db.bands);
 require("./config/memberPassport")(passport, db.members);
@@ -149,7 +132,6 @@ require("./config/memberPassport")(passport, db.members);
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "/client/build/index.html"));
 // });
-
 
 // db.sequelize.sync({ force: false }).then(function () {
 //   server.listen(PORT, function () {
