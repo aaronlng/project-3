@@ -1,68 +1,60 @@
-// // Page that allows people to add information
-// import React, { Component } from "react";
-// import API from "../utils/API";
+// Page that allows people to add information
+import React, { Component } from "react";
+import API from "../utils/API";
 
+class Profile extends Component {
+  state = {
+    firstName: "Kevin2",
+    lastName: "Wang",
+    bio: "asdf",
+    genres: "guitar",
+    experience: "none",
+    email: "asdf@asdf.com"
+  };
 
-// class Profile extends Component {
-//     state = {
-//         firstName: "Kevin2",
-//         lastName: "Wang",
-//         bio: "asdf",
-//         genres: "guitar",
-//         experience: "none",
-//         email: "asdf@asdf.com",
-//     }
+  componentDidMount() {
+    this.loadMember();
+  }
 
-//     componentDidMount() {
-//         this.loadMember()
-//     }
+  loadMember = () => {
+    console.log(this.props.match.params.id);
+    API.getProfile("1") // set the parameter to user id of login
+      .then(res => {
+        this.setState({
+          fullName: res.data.fullName,
+          bio: res.data.bio,
+          genres: res.data.genres,
+          experience: res.data.experience,
+          email: res.data.email
+        });
+      })
+      .catch(err => console.log(err));
+  };
 
-//     loadMember = () => {
-//         API.getProfile("1")  // set the parameter to user id of login
-//             .then(
-//                 res => {
-//                     this.setState(
-//                         {
-//                             fullName: res.data.fullName,
-//                             bio: res.data.bio,
-//                             genres: res.data.genres,
-//                             experience: res.data.experience,
-//                             email: res.data.email
-//                         }
-//                     )
-//                 }
-//             )
-//             .catch(err => console.log(err));
+  createMember = () => {
+    const memberData = {
+      FirstName: this.state.firstName,
+      LastName: this.state.lastName,
+      bio: this.state.bio,
+      genres: this.state.genres,
+      experience: this.state.experience,
+      email: this.state.email
+    };
 
-//     }
+    API.createMember(memberData);
+  };
 
-//     createMember = () => {
-//         const memberData = {
-//             FirstName: this.state.firstName,
-//             LastName: this.state.lastName,
-//             bio: this.state.bio,
-//             genres: this.state.genres,
-//             experience: this.state.experience,
-//             email: this.state.email
-//         }
+  render() {
+    return (
+      <div>
+        <h1>Profile</h1>
+        <button onClick={this.createMember}>Submit</button>
+        <h1>name: {this.state.firstName}</h1>
 
-//         API.createMember(memberData)
-//     }
+        <button onClick={() => API.getProfile("2")}>get request</button>
+      </div>
+    );
+  }
+}
 
-//     render() {
-//         return (
-//             <div>
-//                 <h1>Profile</h1>
-//                 <button onClick={this.createMember}>Submit</button>
-//                 <h1>name: {this.state.firstName}</h1>
-
-//                 <button onClick={() => API.getProfile("2")}>get request</button>
-
-//             </div>
-//         )
-//     }
-
-
-// }
-
-// export default Profile
+export default Profile;

@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import proimg from "../imgs/profile.png";
 import ImageUpload from "../ImageUpload";
 import API from "../../utils/API";
-import "./profile.css";
 import { Card } from "react-materialize";
 
 export default class Profile extends Component {
   state = {
-    fullName: "",
+    bandName: "",
     bio: "asdf",
     genres: "guitar",
     experience: "none",
@@ -19,12 +18,13 @@ export default class Profile extends Component {
   }
 
   loadMember = () => {
-    API.getProfile(this.props.match.params.id) // set the parameter to user id of login
+    API.getBandProfile(this.props.match.params.id) // set the parameter to user id of login
       .then(res => {
+        console.log(res);
         this.setState({
-          fullName: res.data.fullName,
+          bandName: res.data.bandName,
           bio: res.data.bio,
-          genres: res.data.genres,
+          looking: res.data.lookingFor,
           experience: res.data.experience,
           email: res.data.email
         });
@@ -45,7 +45,7 @@ export default class Profile extends Component {
                 />
               </div>
               <div className="col s7">
-                <h1 id="name">{this.state.fullName}</h1>
+                <h1 id="name">{this.state.bandName}</h1>
               </div>
               <div className="col s7">
                 <Card
@@ -61,18 +61,18 @@ export default class Profile extends Component {
                 <Card
                   className="blue-grey darken-1"
                   textClassName="white-text"
-                  title="Experience"
+                  title="Genre We Play"
                 >
-                  {this.state.experience}
+                  {this.state.genres}
                 </Card>
               </div>
               <div className="col s12">
                 <Card
                   className="blue-grey darken-1 cards"
                   textClassName="white-text"
-                  title="Genres I play"
+                  title="Who We are Looking to Add"
                 >
-                  {this.state.genres}
+                  {this.state.looking}
                 </Card>
               </div>
               <div className="col s12">

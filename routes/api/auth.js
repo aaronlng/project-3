@@ -6,7 +6,7 @@ module.exports = function (app, passport) {
     res.json(req.user);
   });
 
-  app.post("/bandSignup", passport.authenticate("band-signup"), function (
+  app.post("/bandSignup", passport.authenticate("band-signup"), function(
     req,
     res
   ) {
@@ -14,6 +14,13 @@ module.exports = function (app, passport) {
   });
 
   app.post("/memberSignin", passport.authenticate("member-signin"), function (
+    req,
+    res
+  ) {
+    res.json(req.user);
+  });
+
+  app.post("/bandSignin", passport.authenticate("band-signin"), function(
     req,
     res
   ) {

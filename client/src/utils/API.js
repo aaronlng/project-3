@@ -1,33 +1,40 @@
 import axios from "axios";
 
 export default {
-    testChat: function () {
-        return axios.get("/api/chat");
-    },
 
-    getChat: function (id) {
-        return axios.get("/api/chat/" + id);
-    },
 
-    getMembers: function () {
-        return axios.get("/api/member");
-    },
+  getChat: function(id) {
+    return axios.get("/api/chat/" + id);
+  },
 
-    getMembersByName: function (name) {
-        return axios.get("/api/membername/" + name);
-    },
+  getMembers: function() {
+    return axios.get("/api/member");
+  },
 
-    getMembersByGenre: function (genre) {
-        return axios.get("/api/membergenre/" + genre);
-    },
+  getMembersByName: function(name) {
+    return axios.get("/api/membername/" + name);
+  },
 
-    getBandsByName: function (name) {
-        return axios.get("api/bandname/" + name);
-    },
+  getMembersByGenre: function(genre) {
+    return axios.get("/api/membergenre/" + genre);
+  },
 
-    getBandsByGenre: function (genre) {
-        return axios.get("api/bandgenre/" + genre);
-    },
+  getBandsByName: function(name) {
+    return axios.get("api/bandname/" + name);
+  },
+
+  getBandsByGenre: function(genre) {
+    return axios.get("api/bandgenre/" + genre);
+  },
+
+  getProfile: function(id) {
+    // post route to get a single member profile
+    return axios.get("../api/member/" + id);
+  },
+
+  postMessage: function(message) {
+    return axios.post("../api/message", message);
+  },
 
     getBands: function () {
         return axios.get("/api/bands");
@@ -37,12 +44,9 @@ export default {
         return axios.post("/memberSignup", data);
     },
 
+
     createBand: function (data) {
         return axios.post("/bandSignup", data);
-    },
-
-    tryslash: function () {
-        return axios.get("/");
     },
 
     getBandMessage: function (id) {
@@ -70,13 +74,9 @@ export default {
         return axios.get("/api/member/" + id)
     },
 
-  getBands: function() {
-    return axios.get("/api/bands");
-  },
-
-  getProfile: function(id) {
+  getBandProfile: function(id) {
     // post route to get a single member profile
-    return axios.get("../api/member/" + id);
+    return axios.get("../api/band/" + id);
   },
 
   fileUpload: function(data) {
@@ -97,5 +97,12 @@ export default {
 
   getPost: function() {
     return axios.get("../api/post");
+  },
+
+  validate: function(data) {
+    return axios.post("/bandSignin", data);
+  },
+  validateSolo: function(data) {
+    return axios.post("/memberSignin", data);
   }
 };

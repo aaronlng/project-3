@@ -45,7 +45,7 @@ module.exports = function(passport, bands) {
 
               genres: req.body.genres,
 
-              experience: req.body.experience
+              lookingFor: req.body.lookingFor
             };
 
             Band.create(data).then(function(newUser, created) {
@@ -59,6 +59,70 @@ module.exports = function(passport, bands) {
             });
           }
         });
+      }
+    )
+  );
+  passport.serializeUser(function(bands, done) {
+    done(null, bands.id);
+  });
+
+  passport.deserializeUser(function(id, done) {
+    User.findById(id).then(function(bands) {
+      if (bands) {
+        return done(null, bands.get());
+      } else {
+        return done(bands.errors, null);
+      }
+    });
+  });
+  passport.use(
+    "band-signin",
+    new LocalStrategy(
+      {
+        // by default, local strategy uses username and password, we will override with email
+
+        usernameField: "email",
+
+        passwordField: "password",
+
+        passReqToCallback: true // allows us to pass back the entire request to the callback
+      },
+
+      function(req, email, password, done) {
+        const User = bands;
+
+        var isValidPassword = function(userpass, password) {
+          return bCrypt.compareSync(password, userpass);
+        };
+
+        User.findOne({
+          where: {
+            email: email
+          }
+        })
+          .then(function(bands) {
+            if (!bands) {
+              return done(null, false, {
+                message: "Email does not exist"
+              });
+            }
+
+            if (!isValidPassword(bands.password, password)) {
+              return done(null, false, {
+                message: "Incorrect password."
+              });
+            }
+
+            var userinfo = bands.get();
+            return done(null, userinfo);
+          })
+          .catch(function(err) {
+            console.log("Error:", err);
+
+            return done(null, false, {
+              message: "Something went wrong with your Signin"
+            });
+          });
       }
     )
   );
