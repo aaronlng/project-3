@@ -17,7 +17,6 @@ class Signup extends Component {
   handleInputChange = event => {
     const { value } = event.target;
     let name = event.target.id;
-    console.log(name);
     this.setState({
       [name]: value
     });
@@ -34,10 +33,12 @@ class Signup extends Component {
       password: this.state.password
     };
     API.createMember(User).then(response => {
-      console.log(response);
+      console.log("createMemberChat of id:" + response.data.id)
+      API.createMemberChat(response.data.id)
       this.props.history.push("/profile/" + response.data.id);
     });
   };
+
   handleBandSubmit = event => {
     event.preventDefault();
     const Band = {
@@ -49,7 +50,10 @@ class Signup extends Component {
       password: this.state.password
     };
     API.createBand(Band).then(message => {
-      console.log(message);
+      console.log("Band message" + message.data);
+      console.log(message)
+      console.log("createBandChat of id:" + message.data.id)
+      API.createBandChat(message.data.id)
     });
   };
 
