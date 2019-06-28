@@ -12,7 +12,6 @@ module.exports = {
   },
 
   findById: function (req, res) {
-    console.log("reached here")
     db.members
       .findOne({
         where: { id: req.params.id }

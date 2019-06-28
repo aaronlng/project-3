@@ -9,6 +9,7 @@ const bandGenreRoutes = require("./bandGenre");
 const uploadRoutes = require("./upload");
 const messageRoutes = require("./message")
 const postRoutes = require("./post")
+const memberMessageRoutes = require("./memberMessage")
 
 // Book routes
 router.use("/chat", chatRoutes);
@@ -21,6 +22,7 @@ router.use("/bandgenre", bandGenreRoutes);
 router.use("/upload", uploadRoutes);
 router.use("/message", messageRoutes);
 router.use("/post", postRoutes);
+router.use("/membermessage",memberMessageRoutes)
 
 module.exports = router;
 

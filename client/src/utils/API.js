@@ -6,6 +6,11 @@ export default {
         return axios.get("../api/message/" + id)
     },
 
+    getMemberMessage: function(id){
+        console.log("membermessage api")
+        return axios.get("../api/membermessage/" +id)
+    },
+
     createMember: function (memberData) {
         // Post route to create member information
         return axios.post("../api/member", memberData)
@@ -13,6 +18,10 @@ export default {
 
     postMessage: function (message) {
         return axios.post("../api/message", message)
+    },
+
+    postMemberMessage: function(message){
+        return axios.post("../api/membermessage",message)
     },
 
     getMembers: function () {
@@ -26,6 +35,10 @@ export default {
 
     getBandById: function (id) {
         return axios.get("/api/band/" + id)
+    },
+
+    getMemberById: function(id){
+        return axios.get("/api/member/" + id)
     },
 
     getMembersByName: function (name) {
