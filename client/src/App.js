@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import "./App.css";
+
+import Home from "./components/Home";
 import "materialize-css/dist/css/materialize.min.css";
+import Member from "./components/views/Member";
+import Profile from "./components/views/profile";
+import Bands from "./components/views/bands";
 import Signup from "./components/login/signup";
-import Chat from "./components/Chat"
+import Chat from "./components/Chat";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./components/Home"
 import 'materialize-css/dist/css/materialize.min.css'
@@ -11,6 +16,7 @@ import Member from "./components/views/Member"
 import Profile from "./components/views/profile"
 import Bands from "./components/views/bands"
 import M from "materialize-css"
+
 
 import { SearchInput, SearchBtn, SearchSelect } from "./components/Search";
 
@@ -57,7 +63,6 @@ class App extends Component {
             <Route exact path="/post" component={Post} />
           </Switch>
         </Router>
-
       </div>
     );
   }

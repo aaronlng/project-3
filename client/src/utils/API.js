@@ -70,22 +70,18 @@ export default {
         return axios.get("/api/member/" + id)
     },
 
-    getProfile: function (id) {
-        // post route to get a single member profile
-        return axios.get("../api/member/" + id)
-    },
+  getBands: function() {
+    return axios.get("/api/bands");
+  },
 
-    fileUpload: function (data) {
-        return axios.post("../api/upload", data)
-    },
+  getProfile: function(id) {
+    // post route to get a single member profile
+    return axios.get("../api/member/" + id);
+  },
 
-    createPost: function (data) {
-        return axios.post("../api/post", data)
-    },
-
-    getPost: function () {
-        return axios.get("../api/post")
-    },
+  fileUpload: function(data) {
+    return axios.post("../api/upload", data);
+  },
 
     createMemberChat: function (id) {
         return axios.post("../api/memberchatroom/" + id)
@@ -95,4 +91,11 @@ export default {
         return axios.post("../api/bandchatroom/" + id)
     }
 
+  createPost: function(data) {
+    return axios.post("../api/post", data);
+  },
+
+  getPost: function() {
+    return axios.get("../api/post");
+  }
 };

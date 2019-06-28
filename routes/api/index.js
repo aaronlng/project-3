@@ -6,6 +6,7 @@ const memberNameRoutes = require("./memberName");
 const memberGenreRoutes = require("./memberGenre");
 const bandNameRoutes = require("./bandName");
 const bandGenreRoutes = require("./bandGenre");
+
 const messageRoutes = require("./message")
 const postRoutes = require("./post")
 const memberMessageRoutes = require("./memberMessage")
@@ -26,6 +27,7 @@ router.use("/memberchatroom", memberChatroomRoutes)
 router.use("/bandchatroom", bandChatroomRoutes)
 
 
-
+router.use("/bandname", bandNameRoutes);
+router.use("/bandgenre", bandGenreRoutes);
 
 module.exports = router;

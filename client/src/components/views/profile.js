@@ -1,9 +1,7 @@
-
-import React, { Component } from 'react'
-import proimg from '../imgs/profile.png'
-import ImageUpload from "../ImageUpload"
+import React, { Component } from "react";
+import proimg from "../imgs/profile.png";
+import ImageUpload from "../ImageUpload";
 import API from "../../utils/API";
-
 
 export default class Profile extends Component {
   state = {
@@ -14,7 +12,6 @@ export default class Profile extends Component {
     experience: "none",
     email: "asdf@asdf.com"
   };
-
 
   componentDidMount() {
     this.loadMember();
@@ -36,7 +33,6 @@ export default class Profile extends Component {
       .catch(err => console.log(err));
   };
 
-
   createMember = () => {
     const memberData = {
       fullName: this.state.fullName,
@@ -57,7 +53,6 @@ export default class Profile extends Component {
             <div className="col s8">
               <h1 />
               <p />
-
             </div>
           </div>
         </div>
