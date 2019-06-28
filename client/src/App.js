@@ -10,6 +10,7 @@ import Post from './components/post'
 import Member from "./components/views/Member"
 import Profile from "./components/views/profile"
 import Bands from "./components/views/bands"
+import M from "materialize-css"
 
 import { SearchInput, SearchBtn, SearchSelect } from "./components/Search";
 

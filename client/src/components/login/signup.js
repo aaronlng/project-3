@@ -17,7 +17,6 @@ class Signup extends Component {
   handleInputChange = event => {
     const { value } = event.target;
     let name = event.target.id;
-    console.log(name);
     this.setState({
       [name]: value
     });
@@ -34,10 +33,12 @@ class Signup extends Component {
       password: this.state.password
     };
     API.createMember(User).then(response => {
+      console.log("createMemberChat of id:" + response.data.id)
       API.createMemberChat(response.data.id)
       this.props.history.push("/profile/" + response.data.id);
     });
   };
+
   handleBandSubmit = event => {
     event.preventDefault();
     const Band = {
@@ -49,7 +50,10 @@ class Signup extends Component {
       password: this.state.password
     };
     API.createBand(Band).then(message => {
-      console.log(message);
+      console.log("Band message" + message.data);
+      console.log(message)
+      console.log("createBandChat of id:" + message.data.id)
+      API.createBandChat(message.data.id)
     });
   };
 
@@ -68,7 +72,7 @@ class Signup extends Component {
                   className="validate"
                   onChange={this.handleInputChange}
                 />
-                {/* <label for="fullName">full Name</label> */}
+                <label for="fullName">full Name</label>
               </div>
             </div>
             <div className="row">
@@ -80,7 +84,7 @@ class Signup extends Component {
                   className="validate"
                   onChange={this.handleInputChange}
                 />
-                {/* <label for="bio">Bio</label> */}
+                <label for="bio">Bio</label>
               </div>
             </div>
             <div className="row">
@@ -92,7 +96,7 @@ class Signup extends Component {
                   className="validate"
                   onChange={this.handleInputChange}
                 />
-                {/* <label for="experience">experience</label> */}
+                <label for="experience">experience</label>
               </div>
             </div>
             <div className="row">
@@ -115,7 +119,7 @@ class Signup extends Component {
                   className="validate"
                   onChange={this.handleInputChange}
                 />
-                {/* <label for="password">Password</label> */}
+                <label for="password">Password</label>
               </div>
             </div>
             <div className="row">
@@ -126,7 +130,7 @@ class Signup extends Component {
                   className="validate"
                   onChange={this.handleInputChange}
                 />
-                {/* <label for="email">Email</label> */}
+                <label for="email">Email</label>
               </div>
             </div>
           </form>

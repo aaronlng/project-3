@@ -40,7 +40,6 @@ module.exports = {
   },
 
   createMemberChatroom: function (req, res) {
-    console.log("creating member chatroom" + req.params.id)
     db.MemberChatroom
       .create(
         {
@@ -49,6 +48,17 @@ module.exports = {
       )
       .then(data => res.json(data))
       .catch(err => res.status(422).json(err))
-  }
+  },
 
+  createBandChatroom: function (req, res) {
+    console.log("creating band chatroom" + req.params.id)
+    db.Chatroom
+      .create(
+        {
+          bandId: req.params.id
+        }
+      )
+      .then(data => res.json(data))
+      .catch(err => res.status(422).json(err))
+  }
 };

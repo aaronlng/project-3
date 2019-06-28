@@ -87,8 +87,12 @@ export default {
         return axios.get("../api/post")
     },
 
-    createMemberChat: function (){
-        return axios.get("../api/")
+    createMemberChat: function (id) {
+        return axios.post("../api/memberchatroom/" + id)
+    },
+
+    createBandChat: function (id) {
+        return axios.post("../api/bandchatroom/" + id)
     }
 
 };

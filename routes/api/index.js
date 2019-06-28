@@ -10,6 +10,7 @@ const messageRoutes = require("./message")
 const postRoutes = require("./post")
 const memberMessageRoutes = require("./memberMessage")
 const memberChatroomRoutes = require("./memberChatroom")
+const bandChatroomRoutes = require("./bandChatroom")
 
 router.use("/chat", chatRoutes);
 router.use("/member", memberRoutes);
@@ -21,7 +22,8 @@ router.use("/bandgenre", bandGenreRoutes);
 router.use("/message", messageRoutes);
 router.use("/post", postRoutes);
 router.use("/membermessage", memberMessageRoutes)
-router.use("/memberChatroom", memberChatroomRoutes)
+router.use("/memberchatroom", memberChatroomRoutes)
+router.use("/bandchatroom", bandChatroomRoutes)
 
 
 
