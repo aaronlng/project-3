@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { EventEmitter } from "events";
 import API from "../../utils/API";
 import { Redirect } from "react-router-dom";
+import { Card } from "react-materialize";
 
 class Signup extends Component {
   state = {
@@ -11,13 +12,14 @@ class Signup extends Component {
     genres: "",
     experience: "",
     email: "",
-    password: ""
+    password: "",
+    emailS: "",
+    passwordS: ""
   };
 
   handleInputChange = event => {
     const { value } = event.target;
     let name = event.target.id;
-    console.log(name);
     this.setState({
       [name]: value
     });
@@ -34,7 +36,7 @@ class Signup extends Component {
       password: this.state.password
     };
     API.createMember(User).then(response => {
-      console.log(response);
+      // console.log(response);
       this.props.history.push("/profile/" + response.data.id);
     });
   };
@@ -48,14 +50,36 @@ class Signup extends Component {
       email: this.state.email,
       password: this.state.password
     };
-    API.createBand(Band).then(message => {
-      console.log(message);
+    API.createBand(Band).then(response => {
+      console.log(response.data);
+      this.props.history.push("/bandProfile/" + response.data.id);
     });
   };
-
+  handleBandSignin = event => {
+    event.preventDefault();
+    const Band = {
+      email: this.state.emailS,
+      password: this.state.passwordS
+    };
+    API.validate(Band).then(response => {
+      console.log(response.data);
+      this.props.history.push("/bandProfile/" + response.data.id);
+    });
+  };
+  handleSoloSignin = event => {
+    event.preventDefault();
+    const User = {
+      email: this.state.emailS,
+      password: this.state.passwordS
+    };
+    API.validateSolo(User).then(response => {
+      console.log(response.data);
+      this.props.history.push("/profile/" + response.data.id);
+    });
+  };
   isSolo = () => {
     return (
-      <div className="container">
+      <div style={{ padding: 10 }}>
         <div className="row" />
         <div className="row">
           <form className="col s12">
@@ -131,7 +155,13 @@ class Signup extends Component {
             </div>
           </form>
         </div>
-        <button className="btn" onClick={e => this.handleSubmit(e)} />
+        <button
+          className="btn waves-effect waves-light"
+          style={{ backgroundColor: "grey" }}
+          onClick={e => this.handleSubmit(e)}
+        >
+          Submit
+        </button>
       </div>
     );
   };
@@ -148,10 +178,79 @@ class Signup extends Component {
       isBand: true
     });
   };
-
+  bandSignin = () => {
+    return (
+      <div style={{ padding: 10 }}>
+        <div className="row">
+          <div className="input-field col s12">
+            <input
+              id="passwordS"
+              type="password"
+              className="validate"
+              onChange={this.handleInputChange}
+            />
+            <label for="passwordS">password</label>
+          </div>
+        </div>
+        <div className="row">
+          <div className="input-field col s12">
+            <input
+              id="emailS"
+              type="email"
+              className="validate"
+              onChange={this.handleInputChange}
+            />
+            <label for="emailS">Email</label>
+          </div>
+        </div>
+        <btn
+          className="btn"
+          style={{ backgroundColor: "grey" }}
+          onClick={e => this.handleBandSignin(e)}
+        >
+          SignIn Band!
+        </btn>
+      </div>
+    );
+  };
+  soloSignin = () => {
+    return (
+      <div style={{ padding: 10 }}>
+        <div className="row">
+          <div className="input-field col s12">
+            <input
+              id="passwordS"
+              type="password"
+              className="validate"
+              onChange={this.handleInputChange}
+            />
+            <label for="passwordS">password</label>
+          </div>
+        </div>
+        <div className="row">
+          <div className="input-field col s12">
+            <input
+              id="emailS"
+              type="email"
+              className="validate"
+              onChange={this.handleInputChange}
+            />
+            <label for="emailS">Email</label>
+          </div>
+        </div>
+        <btn
+          className="btn"
+          style={{ backgroundColor: "grey" }}
+          onClick={e => this.handleSoloSignin(e)}
+        >
+          Sign In!
+        </btn>
+      </div>
+    );
+  };
   isBands = () => {
     return (
-      <div className="container">
+      <div style={{ padding: 10 }}>
         <div className="row" />
         <div className="row">
           <form className="col s12">
@@ -227,7 +326,13 @@ class Signup extends Component {
             </div>
           </form>
         </div>
-        <button className="btn" onClick={e => this.handleBandSubmit(e)} />
+        <button
+          style={{ backgroundColor: "grey" }}
+          className="btn waves-effect waves-light"
+          onClick={e => this.handleBandSubmit(e)}
+        >
+          Submit Band
+        </button>
       </div>
     );
   };
@@ -235,15 +340,51 @@ class Signup extends Component {
   render() {
     return (
       <div className="row">
-        <button className="btn" onClick={e => this.isMember(e)}>
-          Signup yourself!
-        </button>
-        <button className="btn" onClick={e => API.tryslash()} />
-        <button className="btn" onClick={e => this.isBand(e)}>
-          Signup A Band!
-        </button>
+        <div className="col s6">
+          <Card>
+            <h3
+              style={{ marginLeft: "37%", fontFamily: "'Arimo', sans-serif" }}
+            >
+              Sign Up here!
+            </h3>
+            <button
+              style={{ marginLeft: "35%", backgroundColor: "grey" }}
+              className="btn waves-effect waves-light"
+              onClick={e => this.isMember(e)}
+            >
+              Signup yourself!
+            </button>
+            <button
+              style={{ backgroundColor: "grey" }}
+              className="btn waves-effect waves-light"
+              onClick={e => this.isBand(e)}
+            >
+              Signup A Band!
+            </button>
+            {this.state.isBand ? this.isBands() : this.isSolo()}
+          </Card>
+        </div>
+        <div className="col s6">
+          <Card>
+            <h3 style={{ marginLeft: "37%" }}>Sign In here!</h3>
+            <button
+              style={{ marginLeft: "35%", backgroundColor: "grey" }}
+              className="btn waves-effect waves-light"
+              onClick={e => this.isMember(e)}
+            >
+              Signin yourself!
+            </button>
+            <button
+              style={{ backgroundColor: "grey" }}
+              className="btn waves-effect waves-light"
+              onClick={e => this.isBand(e)}
+            >
+              SignIn Band!
+            </button>
 
-        {this.state.isBand ? this.isBands() : this.isSolo()}
+            {this.state.isBand ? this.bandSignin() : this.soloSignin()}
+          </Card>
+        </div>
       </div>
     );
   }

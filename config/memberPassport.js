@@ -1,5 +1,5 @@
 //load bcrypt
-var bCrypt = require("bcrypt-nodejs");
+const bCrypt = require("bcrypt-nodejs");
 
 module.exports = function(passport, member) {
   var User = member;
@@ -18,7 +18,7 @@ module.exports = function(passport, member) {
       },
 
       function(req, email, password, done) {
-        var generateHash = function(password) {
+        const generateHash = function(password) {
           return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
         };
 
@@ -107,7 +107,7 @@ module.exports = function(passport, member) {
                 message: "Email does not exist"
               });
             }
-
+            console.log(member.dataValues.password);
             if (!isValidPassword(member.password, password)) {
               return done(null, false, {
                 message: "Incorrect password."

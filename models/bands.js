@@ -30,10 +30,10 @@ module.exports = function(sequelize, DataTypes) {
         isEmail: true
       }
     },
-    // password: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false
-    // },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
     // decrypter: {
     //   type: DataTypes.STRING
     // },

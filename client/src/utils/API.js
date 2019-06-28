@@ -9,11 +9,6 @@ export default {
     return axios.get("/api/chat/" + id);
   },
 
-  createMember: function(memberData) {
-    // Post route to create member information
-    return axios.post("../api/member", memberData);
-  },
-
   getMembers: function() {
     return axios.get("/api/member");
   },
@@ -86,11 +81,6 @@ export default {
     return axios.get("../api/membermessage/" + id);
   },
 
-  createMember: function(memberData) {
-    // Post route to create member information
-    return axios.post("../api/member", memberData);
-  },
-
   postMessage: function(message) {
     return axios.post("../api/message", message);
   },
@@ -141,6 +131,11 @@ export default {
     return axios.get("../api/member/" + id);
   },
 
+  getBandProfile: function(id) {
+    // post route to get a single member profile
+    return axios.get("../api/band/" + id);
+  },
+
   fileUpload: function(data) {
     return axios.post("../api/upload", data);
   },
@@ -151,5 +146,12 @@ export default {
 
   getPost: function() {
     return axios.get("../api/post");
+  },
+
+  validate: function(data) {
+    return axios.post("/bandSignin", data);
+  },
+  validateSolo: function(data) {
+    return axios.post("/memberSignin", data);
   }
 };

@@ -1,0 +1,20 @@
+body {
+  background-image: url("https://images.pexels.com/photos/6966/abstract-music-rock-bw.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-size: cover;
+}
+
+#picture {
+  margin-top: 30px;
+  max-width: 400px;
+  max-height: 500px;
+  border-radius: 200px;
+}
+
+.cards {
+  font-family: "Arimo", sans-serif;
+}
+
+#name {
+  font-size: 90px;
+  font-family: "Rubik Mono One", sans-serif;
+}

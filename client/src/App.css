@@ -18,7 +18,18 @@
   font-size: large;
 }
 
+.nav-wrapper {
+  background: #222;
+}
+#nav-mobile {
+  background: #222;
+}
+
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

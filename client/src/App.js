@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import M from "materialize-css";
 import Home from "./components/Home";
 import "materialize-css/dist/css/materialize.min.css";
 import Member from "./components/views/Member";
@@ -10,6 +11,7 @@ import Chat from "./components/Chat";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "materialize-css/dist/css/materialize.min.css";
 import Post from "./components/post.js";
+import bandProfile from "./components/views/bandProfile";
 
 import { SearchInput, SearchBtn, SearchSelect } from "./components/Search";
 
@@ -27,6 +29,11 @@ import { SearchInput, SearchBtn, SearchSelect } from "./components/Search";
 class App extends Component {
   test = () => console.log("1");
 
+  state = {
+    loggedIn: false,
+    id: ""
+  };
+
   render() {
     return (
       <div className="App">
@@ -41,7 +48,11 @@ class App extends Component {
                 <a href="/post">Posts</a>
               </li>
               <li>
-                <a href="/signin">Login</a>
+                {this.state.loggedIn ? (
+                  <a href="/profile/:id">Profile</a>
+                ) : (
+                  <a href="/signin">Login</a>
+                )}
               </li>
             </ul>
           </div>
@@ -53,6 +64,7 @@ class App extends Component {
             <Route exact path="/band/:id" component={Bands} />
             <Route exact path="/member/:id" component={Member} />
             <Route exact path="/profile/:id" component={Profile} />
+            <Route exact path="/bandProfile/:id" component={bandProfile} />
             <Route exact path="/post" component={Post} />
           </Switch>
         </Router>

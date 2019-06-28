@@ -1,11 +1,11 @@
-// Page that allows people to add information
 import React, { Component } from "react";
-import API from "../utils/API";
+import proimg from "../imgs/profile.png";
+import ImageUpload from "../ImageUpload";
+import API from "../../utils/API";
 
-class Profile extends Component {
+export default class Profile extends Component {
   state = {
-    firstName: "Kevin2",
-    lastName: "Wang",
+    bandName: "",
     bio: "asdf",
     genres: "guitar",
     experience: "none",
@@ -17,11 +17,11 @@ class Profile extends Component {
   }
 
   loadMember = () => {
-    console.log(this.props.match.params.id);
-    API.getProfile("1") // set the parameter to user id of login
+    API.getBandProfile(this.props.match.params.id) // set the parameter to user id of login
       .then(res => {
+        console.log(res);
         this.setState({
-          fullName: res.data.fullName,
+          bandName: res.data.bandName,
           bio: res.data.bio,
           genres: res.data.genres,
           experience: res.data.experience,
@@ -33,28 +33,28 @@ class Profile extends Component {
 
   createMember = () => {
     const memberData = {
-      FirstName: this.state.firstName,
-      LastName: this.state.lastName,
+      fullName: this.state.fullName,
       bio: this.state.bio,
       genres: this.state.genres,
       experience: this.state.experience,
       email: this.state.email
     };
-
     API.createMember(memberData);
   };
 
   render() {
     return (
       <div>
-        <h1>Profile</h1>
-        <button onClick={this.createMember}>Submit</button>
-        <h1>name: {this.state.firstName}</h1>
-
-        <button onClick={() => API.getProfile("2")}>get request</button>
+        <div className="container">
+          <div className="section">
+            <div className="col s4">{/* <img src={proimg}></img> */}</div>
+            <div className="col s8">
+              <h1 />
+              <p />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
 }
-
-export default Profile;
