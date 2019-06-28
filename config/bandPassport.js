@@ -45,7 +45,7 @@ module.exports = function(passport, bands) {
 
               genres: req.body.genres,
 
-              experience: req.body.experience
+              lookingFor: req.body.lookingFor
             };
 
             Band.create(data).then(function(newUser, created) {

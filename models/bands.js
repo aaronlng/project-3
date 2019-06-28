@@ -13,16 +13,11 @@ module.exports = function(sequelize, DataTypes) {
 
     bio: DataTypes.TEXT,
 
+    lookingFor: DataTypes.STRING,
+
     //will need to json.Stringify to convert or parse it out if we are extracting
     genres: {
       type: DataTypes.STRING
-
-      // get: function() {
-      //   return JSON.parse(this.getDataValue("myArrayField"));
-      // },
-      // set: function(val) {
-      //   return this.setDataValue("myArrayField", JSON.stringify(val));
-      // }
     },
     email: {
       type: DataTypes.STRING,

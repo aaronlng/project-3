@@ -14,7 +14,7 @@ const generateSingupRoutes = require("./routes/api/auth");
 
 //Sync Database
 db.sequelize
-  .sync()
+  .sync({ force: true })
   // .sync()
   .then(function() {
     console.log("Nice! Database looks fine");

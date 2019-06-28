@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import proimg from "../imgs/profile.png";
 import ImageUpload from "../ImageUpload";
 import API from "../../utils/API";
+import { Card } from "react-materialize";
 
 export default class Profile extends Component {
   state = {
@@ -23,7 +24,7 @@ export default class Profile extends Component {
         this.setState({
           bandName: res.data.bandName,
           bio: res.data.bio,
-          genres: res.data.genres,
+          looking: res.data.lookingFor,
           experience: res.data.experience,
           email: res.data.email
         });
@@ -31,26 +32,58 @@ export default class Profile extends Component {
       .catch(err => console.log(err));
   };
 
-  createMember = () => {
-    const memberData = {
-      fullName: this.state.fullName,
-      bio: this.state.bio,
-      genres: this.state.genres,
-      experience: this.state.experience,
-      email: this.state.email
-    };
-    API.createMember(memberData);
-  };
-
   render() {
     return (
       <div>
-        <div className="container">
-          <div className="section">
-            <div className="col s4">{/* <img src={proimg}></img> */}</div>
-            <div className="col s8">
-              <h1 />
-              <p />
+        <div>
+          <div className="container">
+            <div className="row">
+              <div className="col s5">
+                <img
+                  id="picture"
+                  src="https://amp.businessinsider.com/images/5d003e606fc92048d552ab93-750-563.jpg"
+                />
+              </div>
+              <div className="col s7">
+                <h1 id="name">{this.state.bandName}</h1>
+              </div>
+              <div className="col s7">
+                <Card
+                  className="blue-grey darken-1"
+                  textClassName="white-text"
+                  title="Bio"
+                >
+                  {this.state.bio}
+                </Card>
+              </div>
+
+              <div className="col s12">
+                <Card
+                  className="blue-grey darken-1"
+                  textClassName="white-text"
+                  title="Genre We Play"
+                >
+                  {this.state.genres}
+                </Card>
+              </div>
+              <div className="col s12">
+                <Card
+                  className="blue-grey darken-1 cards"
+                  textClassName="white-text"
+                  title="Who We are Looking to Add"
+                >
+                  {this.state.looking}
+                </Card>
+              </div>
+              <div className="col s12">
+                <Card
+                  className="blue-grey darken-1"
+                  textClassName="white-text"
+                  title="Email Contact"
+                >
+                  {this.state.email}
+                </Card>
+              </div>
             </div>
           </div>
         </div>

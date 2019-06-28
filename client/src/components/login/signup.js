@@ -8,6 +8,7 @@ class Signup extends Component {
   state = {
     isBand: false,
     fullName: "",
+    lookingFor: "",
     bio: "",
     genres: "",
     experience: "",
@@ -46,10 +47,11 @@ class Signup extends Component {
       bandName: this.state.fullName,
       bio: this.state.bio,
       genres: this.state.genres,
-      experience: this.state.experience,
+      lookingFor: this.state.lookingFor,
       email: this.state.email,
       password: this.state.password
     };
+    console.log(Band.lookingFor);
     API.createBand(Band).then(response => {
       console.log(response.data);
       this.props.history.push("/bandProfile/" + response.data.id);
@@ -281,13 +283,13 @@ class Signup extends Component {
             <div className="row">
               <div className="input-field col s12">
                 <input
-                  placeholder="how long has the band been around?"
-                  id="experience"
+                  placeholder="what kind of new member are you looking to add?"
+                  id="lookingFor"
                   type="text"
                   className="validate"
                   onChange={this.handleInputChange}
                 />
-                <label for="experience">experience</label>
+                <label for="lookingFor">Searching For</label>
               </div>
             </div>
             <div className="row">
