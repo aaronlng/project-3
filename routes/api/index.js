@@ -6,7 +6,6 @@ const memberNameRoutes = require("./memberName")
 const memberGenreRoutes = require("./memberGenre")
 const bandNameRoutes = require("./bandName");
 const bandGenreRoutes = require("./bandGenre");
-const uploadRoutes = require("./upload");
 
 // Book routes
 router.use("/chat", chatRoutes);
@@ -16,7 +15,6 @@ router.use("/membername",memberNameRoutes);
 router.use("/membergenre", memberGenreRoutes);
 router.use("/bandname",bandNameRoutes);
 router.use("/bandgenre",bandGenreRoutes);
-router.use("/upload",uploadRoutes)
 
 module.exports = router;
 
