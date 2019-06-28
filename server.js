@@ -8,6 +8,7 @@ const db = require("./models");
 const passport = require("passport");
 const session = require("express-session");
 const bodyParser = require("body-parser");
+const generateSingupRoutes = require("./routes/api/auth");
 
 //Models
 
@@ -27,11 +28,11 @@ const http = require("http");
 const socketIO = require("socket.io");
 const server = http.createServer(app);
 
-const io = socketIO(server)
+const io = socketIO(server);
 
 // Chat room setup
 io.on("connection", socket => {
-  console.log("socket connection 01")
+  console.log("socket connection 01");
   // socket.on("message", body => {
   //   console.log("server:", body)
   //   socket.broadcast.emit("message", {
@@ -41,7 +42,7 @@ io.on("connection", socket => {
   // })
 
   socket.on("message", body => {
-    console.log("server:", body)
+    console.log("server:", body);
     const message = body.message;
     socket.to(body.room).emit("message", {
       message,
@@ -93,6 +94,7 @@ app.use(passport.session());
 app.use(
   session({
     secret: "theTea",
+    cookie: { maxAge: 60000 },
     saveUninitialized: false,
     resave: true
   })
@@ -101,14 +103,42 @@ app.use(
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
+} else {
+  app.use(express.static("client/public"));
 }
 
 
 // Define API routes here
-app.use(routes); 
+app.use(routes);
 
-// app.use();
-const authRoute = require("./routes/auth");
+generateSingupRoutes(app, passport);
+
+//
+
+//set up multer
+var storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, "./client/public/files");
+  },
+  filename: function(req, file, cb) {
+    cb(null, Date.now() + "-" + file.name);
+  }
+});
+
+var upload = multer({ storage: storage }).single("file");
+
+app.post("/upload", function(req, res) {
+  upload(req, res, function(err) {
+    console.log(res);
+    if (err instanceof multer.MulterError) {
+      return res.status(500).json(err);
+    } else if (err) {
+      return res.status(500).json(err);
+    }
+    return res.status(200).send(req.file);
+  });
+});
+
 
 //passport stratagies
 require("./config/bandPassport")(passport, db.bands);
@@ -117,8 +147,10 @@ require("./config/memberPassport")(passport, db.members);
 // Send every other request to the React app
 // Define any API routes before this runs
 // app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
+//   res.sendFile(path.join(__dirname, "/client/build/index.html"));
 // });
+
+
 // db.sequelize.sync({ force: false }).then(function () {
 //   server.listen(PORT, function () {
 //     console.log("App listening on PORT " + PORT);
@@ -127,10 +159,6 @@ require("./config/memberPassport")(passport, db.members);
 // app.use();
 // Send every other request to the React app
 // Define any API routes before this runs
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
 
 server.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);

@@ -39,9 +39,7 @@ module.exports = function(passport, member) {
 
               password: userPassword,
 
-              firstname: req.body.firstname,
-
-              lastname: req.body.lastname,
+              fullName: req.body.fullName,
 
               bio: req.body.bio,
 
@@ -61,6 +59,71 @@ module.exports = function(passport, member) {
             });
           }
         });
+      }
+    )
+  );
+
+  passport.serializeUser(function(member, done) {
+    done(null, member.id);
+  });
+
+  passport.deserializeUser(function(id, done) {
+    User.findById(id).then(function(member) {
+      if (member) {
+        return done(null, member.get());
+      } else {
+        return done(member.errors, null);
+      }
+    });
+  });
+  passport.use(
+    "member-signin",
+    new LocalStrategy(
+      {
+        // by default, local strategy uses username and password, we will override with email
+
+        usernameField: "email",
+
+        passwordField: "password",
+
+        passReqToCallback: true // allows us to pass back the entire request to the callback
+      },
+
+      function(req, email, password, done) {
+        const User = member;
+
+        var isValidPassword = function(userpass, password) {
+          return bCrypt.compareSync(password, userpass);
+        };
+
+        User.findOne({
+          where: {
+            email: email
+          }
+        })
+          .then(function(member) {
+            if (!member) {
+              return done(null, false, {
+                message: "Email does not exist"
+              });
+            }
+
+            if (!isValidPassword(member.password, password)) {
+              return done(null, false, {
+                message: "Incorrect password."
+              });
+            }
+
+            var userinfo = member.get();
+            return done(null, userinfo);
+          })
+          .catch(function(err) {
+            console.log("Error:", err);
+
+            return done(null, false, {
+              message: "Something went wrong with your Signin"
+            });
+          });
       }
     )
   );

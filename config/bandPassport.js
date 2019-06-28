@@ -7,7 +7,7 @@ module.exports = function(passport, bands) {
   var LocalStrategy = require("passport-local").Strategy;
 
   passport.use(
-    "local-signup",
+    "band-signup",
     new LocalStrategy(
       {
         usernameField: "email",
@@ -39,10 +39,16 @@ module.exports = function(passport, bands) {
 
               password: userPassword,
 
-              bandName: req.body.bandName
+              bandName: req.body.bandName,
+
+              bio: req.body.bio,
+
+              genres: req.body.genres,
+
+              experience: req.body.experience
             };
 
-            User.create(data).then(function(newUser, created) {
+            Band.create(data).then(function(newUser, created) {
               if (!newUser) {
                 return done(null, false);
               }
