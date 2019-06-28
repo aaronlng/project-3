@@ -111,17 +111,8 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 generateSingupRoutes(app, passport);
-app.post("/upload", function(req, res) {
-  upload(req, res, function(err) {
-    console.log(res);
-    if (err instanceof multer.MulterError) {
-      return res.status(500).json(err);
-    } else if (err) {
-      return res.status(500).json(err);
-    }
-    return res.status(200).send(req.file);
-  });
-});
+
+
 
 //passport stratagies
 require("./config/bandPassport")(passport, db.bands);

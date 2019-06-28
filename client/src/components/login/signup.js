@@ -37,10 +37,12 @@ class Signup extends Component {
       password: this.state.password
     };
     API.createMember(User).then(response => {
-      // console.log(response);
+      console.log("createMemberChat of id:" + response.data.id)
+      API.createMemberChat(response.data.id)
       this.props.history.push("/profile/" + response.data.id);
     });
   };
+
   handleBandSubmit = event => {
     event.preventDefault();
     const Band = {
@@ -51,9 +53,8 @@ class Signup extends Component {
       email: this.state.email,
       password: this.state.password
     };
-    console.log(Band.lookingFor);
     API.createBand(Band).then(response => {
-      console.log(response.data);
+      API.createBandChat(response.data.id)
       this.props.history.push("/bandProfile/" + response.data.id);
     });
   };
@@ -75,7 +76,6 @@ class Signup extends Component {
       password: this.state.passwordS
     };
     API.validateSolo(User).then(response => {
-      console.log(response.data);
       this.props.history.push("/profile/" + response.data.id);
     });
   };

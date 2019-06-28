@@ -2,7 +2,9 @@
 import React, { Component } from "react";
 import { SearchInput, SearchBtn, SearchSelect } from "./Search";
 import API from "../utils/API";
-import { Modal, Card, Row, Col, Container } from "react-materialize";
+import { Modal, Card, Row, Col, Container } from 'react-materialize';
+
+
 
 class Home extends Component {
   state = {

@@ -9,9 +9,11 @@ import Bands from "./components/views/bands";
 import Signup from "./components/login/signup";
 import Chat from "./components/Chat";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 import "materialize-css/dist/css/materialize.min.css";
 import Post from "./components/post.js";
 import bandProfile from "./components/views/bandProfile";
+
 
 import { SearchInput, SearchBtn, SearchSelect } from "./components/Search";
 

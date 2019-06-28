@@ -1,10 +1,11 @@
-module.exports = function(app, passport) {
-  app.post("/memberSignup", passport.authenticate("local-signup"), function(
+module.exports = function (app, passport) {
+  app.post("/memberSignup", passport.authenticate("local-signup"), function (
     req,
     res
   ) {
     res.json(req.user);
   });
+
   app.post("/bandSignup", passport.authenticate("band-signup"), function(
     req,
     res
@@ -12,7 +13,7 @@ module.exports = function(app, passport) {
     res.json(req.user);
   });
 
-  app.post("/memberSignin", passport.authenticate("member-signin"), function(
+  app.post("/memberSignin", passport.authenticate("member-signin"), function (
     req,
     res
   ) {
