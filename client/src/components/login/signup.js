@@ -34,7 +34,7 @@ class Signup extends Component {
       password: this.state.password
     };
     API.createMember(User).then(response => {
-      console.log(response);
+      API.createMemberChat(response.data.id)
       this.props.history.push("/profile/" + response.data.id);
     });
   };
@@ -68,7 +68,7 @@ class Signup extends Component {
                   className="validate"
                   onChange={this.handleInputChange}
                 />
-                <label for="fullName">full Name</label>
+                {/* <label for="fullName">full Name</label> */}
               </div>
             </div>
             <div className="row">
@@ -80,7 +80,7 @@ class Signup extends Component {
                   className="validate"
                   onChange={this.handleInputChange}
                 />
-                <label for="bio">Bio</label>
+                {/* <label for="bio">Bio</label> */}
               </div>
             </div>
             <div className="row">
@@ -92,7 +92,7 @@ class Signup extends Component {
                   className="validate"
                   onChange={this.handleInputChange}
                 />
-                <label for="experience">experience</label>
+                {/* <label for="experience">experience</label> */}
               </div>
             </div>
             <div className="row">
@@ -115,7 +115,7 @@ class Signup extends Component {
                   className="validate"
                   onChange={this.handleInputChange}
                 />
-                <label for="password">Password</label>
+                {/* <label for="password">Password</label> */}
               </div>
             </div>
             <div className="row">
@@ -126,7 +126,7 @@ class Signup extends Component {
                   className="validate"
                   onChange={this.handleInputChange}
                 />
-                <label for="email">Email</label>
+                {/* <label for="email">Email</label> */}
               </div>
             </div>
           </form>

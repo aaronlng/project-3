@@ -1,140 +1,73 @@
 import axios from "axios";
 
 export default {
-  testChat: function() {
-    return axios.get("/api/chat");
-  },
+    testChat: function () {
+        return axios.get("/api/chat");
+    },
 
-  getChat: function(id) {
-    return axios.get("/api/chat/" + id);
-  },
+    getChat: function (id) {
+        return axios.get("/api/chat/" + id);
+    },
 
-  createMember: function(memberData) {
-    // Post route to create member information
-    return axios.post("../api/member", memberData);
-  },
+    getMembers: function () {
+        return axios.get("/api/member");
+    },
 
-  getMembers: function() {
-    return axios.get("/api/member");
-  },
+    getMembersByName: function (name) {
+        return axios.get("/api/membername/" + name);
+    },
 
-  getMembersByName: function(name) {
-    return axios.get("/api/membername/" + name);
-  },
+    getMembersByGenre: function (genre) {
+        return axios.get("/api/membergenre/" + genre);
+    },
 
-  getMembersByGenre: function(genre) {
-    return axios.get("/api/membergenre/" + genre);
-  },
+    getBandsByName: function (name) {
+        return axios.get("api/bandname/" + name);
+    },
 
-  getBandsByName: function(name) {
-    return axios.get("api/bandname/" + name);
-  },
+    getBandsByGenre: function (genre) {
+        return axios.get("api/bandgenre/" + genre);
+    },
 
-  getBandsByGenre: function(genre) {
-    return axios.get("api/bandgenre/" + genre);
-  },
+    getBands: function () {
+        return axios.get("/api/bands");
+    },
 
-  getBands: function() {
-    return axios.get("/api/bands");
-  },
+    createMember: function (data) {
+        return axios.post("/memberSignup", data);
+    },
 
-  getProfile: function(id) {
-    // post route to get a single member profile
-    return axios.get("../api/member/" + id);
-  },
+    createBand: function (data) {
+        return axios.post("/bandSignup", data);
+    },
 
-  fileUpload: function(data) {
-    return axios.post("../api/upload", data);
-  },
-
-  createMember: function(data) {
-    return axios.post("/memberSignup", data);
-  },
-
-  createBand: function(data) {
-    return axios.post("/bandSignup", data);
-  },
-
-  tryslash: function() {
-    return axios.get("/");
-  }
-
-  // Eamplex
-  //   // Gets all books
-  //   getBooks: function() {
-  //     return axios.get("/api/books");
-  //   },
-  //   // Gets the book with the given id
-  //   getBook: function(id) {
-  //     return axios.get("/api/books/" + id);
-  //   },
-  //   // Deletes the book with the given id
-  //   deleteBook: function(id) {
-  //     return axios.delete("/api/books/" + id);
-  //   },
-  //   // Saves a book to the database
-  //   saveBook: function(bookData) {
-  //     return axios.post("/api/books", bookData);
-  //   }
-
+    tryslash: function () {
+        return axios.get("/");
+    },
 
     getBandMessage: function (id) {
         return axios.get("../api/message/" + id)
     },
 
-    getMemberMessage: function(id){
+    getMemberMessage: function (id) {
         console.log("membermessage api")
-        return axios.get("../api/membermessage/" +id)
-    },
-
-    createMember: function (memberData) {
-        // Post route to create member information
-        return axios.post("../api/member", memberData)
+        return axios.get("../api/membermessage/" + id)
     },
 
     postMessage: function (message) {
         return axios.post("../api/message", message)
     },
 
-    postMemberMessage: function(message){
-        return axios.post("../api/membermessage",message)
-    },
-
-    getMembers: function () {
-        return axios.get("/api/member")
-    },
-
-    getMemberById: function (id) {
-        console.log("in this funciton")
-        return axios.get("/api/member/" + id)
+    postMemberMessage: function (message) {
+        return axios.post("../api/membermessage", message)
     },
 
     getBandById: function (id) {
         return axios.get("/api/band/" + id)
     },
 
-    getMemberById: function(id){
+    getMemberById: function (id) {
         return axios.get("/api/member/" + id)
-    },
-
-    getMembersByName: function (name) {
-        return axios.get("/api/membername/" + name)
-    },
-
-    getMembersByGenre: function (genre) {
-        return axios.get("/api/membergenre/" + genre)
-    },
-
-    getBandsByName: function (name) {
-        return axios.get("api/bandname/" + name)
-    },
-
-    getBandsByGenre: function (genre) {
-        return axios.get("api/bandgenre/" + genre)
-    },
-
-    getBands: function () {
-        return axios.get("/api/bands")
     },
 
     getProfile: function (id) {
@@ -150,8 +83,12 @@ export default {
         return axios.post("../api/post", data)
     },
 
-    getPost: function(){
+    getPost: function () {
         return axios.get("../api/post")
+    },
+
+    createMemberChat: function (){
+        return axios.get("../api/")
     }
 
 };

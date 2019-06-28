@@ -23,15 +23,12 @@ module.exports = {
   },
 
   createMemberMessage: function (req, res) {
-    console.log("creating member message")
-    console.log(req.body.MemberChatroomId)
     db.MemberMessage.create(req.body)
       .then(dbMemMessage => res.json(dbMemMessage))
       .catch(err => res.status(422).json(err));
   },
 
   findMemberMessage: function (req, res) {
-    console.log("finding member message")
     db.MemberMessage
       .findAll(
         {
@@ -42,6 +39,16 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
 
-
+  createMemberChatroom: function (req, res) {
+    console.log("creating member chatroom" + req.params.id)
+    db.MemberChatroom
+      .create(
+        {
+          memberId: req.params.id
+        }
+      )
+      .then(data => res.json(data))
+      .catch(err => res.status(422).json(err))
+  }
 
 };

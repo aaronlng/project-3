@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
-import config from "../firebase-config";
+// import config from "../firebase-config";
 
-firebase.initializeApp(config);
+// firebase.initializeApp(config);
 
 class ImageUpload extends Component {
     state = {

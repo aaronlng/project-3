@@ -1,32 +1,15 @@
 import React, { Component } from "react";
 import "./App.css";
-
-import Chat from "./components/Chat";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect
-} from "react-router-dom";
-import Home from "./components/Home";
 import "materialize-css/dist/css/materialize.min.css";
-import M from "materialize-css";
-import logo from "./images/logo.png";
-import Post from "./components/post.js";
-import Member from "./components/views/Member";
-import Profile from "./components/views/profile";
-import Bands from "./components/views/bands";
 import Signup from "./components/login/signup";
 import Chat from "./components/Chat"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./components/Home"
 import 'materialize-css/dist/css/materialize.min.css'
-import M from 'materialize-css'
-import logo from './images/logo.png'
-import Post from './components/Post.js'
+import Post from './components/post'
 import Member from "./components/views/Member"
-import Profile from "./components/views/Profile"
-import Bands from "./components/views/Bands"
+import Profile from "./components/views/profile"
+import Bands from "./components/views/bands"
 
 import { SearchInput, SearchBtn, SearchSelect } from "./components/Search";
 
@@ -72,16 +55,6 @@ class App extends Component {
             <Route exact path="/profile/:id" component={Profile} />
             <Route exact path="/post" component={Post} />
           </Switch>
-          <a
-            className="btn"
-            onClick={() => {
-              console.log("1");
-            }}
-          >
-            asdfadsfff
-          </a>
-          <input />
-          <Chat />
         </Router>
 
       </div>

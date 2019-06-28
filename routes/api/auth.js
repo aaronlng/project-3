@@ -5,6 +5,7 @@ module.exports = function(app, passport) {
   ) {
     res.json(req.user);
   });
+  
   app.post(
     "/bandSignup",
     passport.authenticate("band-signup", {
