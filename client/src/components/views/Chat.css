@@ -1,25 +1,25 @@
 .chat{
     position: fixed;
-    width:1400px;
+    width:400px;
     bottom: 0px;
     right: 0px;
 }
 
 .chat-box{
-    border-style: solid;
+    border-style: inset;
     border-width: 1px;
     border-radius: 5px;
     position: relative;
     bottom: 0px;
     right: 0px;
-    width:1400px;
+    width:400px;
     height:400px;
 }
 
 .chat-bar{
     position: absolute;
     height:30px;
-    width:1400px;
+    width:400px;
     top:-30px;
     border-width: 2px;
     border-style:groove;

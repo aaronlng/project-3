@@ -35,13 +35,13 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Members.associate = function(models) {
-    Members.hasMany(models.Message);
+    Members.hasOne(models.MemberChatroom);
   };
   Members.associate = function(models) {
-    Members.hasMany(models.Post);
+    Members.hasMany(models.post);
   };
   Members.associate = function(models) {
-    Members.hasMany(models.Comments);
+    Members.hasMany(models.comments);
   };
   Members.associate = function(models) {
     Members.belongsTo(models.bands, {

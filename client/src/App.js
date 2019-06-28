@@ -6,7 +6,7 @@ import Home from "./components/Home"
 import 'materialize-css/dist/css/materialize.min.css'
 import M from 'materialize-css'
 import logo from './images/logo.png'
-import Post from './components/post.js'
+import Post from './components/Post.js'
 import Member from "./components/views/Member"
 import Profile from "./components/views/Profile"
 import Bands from "./components/views/Bands"
@@ -52,7 +52,7 @@ class App extends Component {
             <Route exact path="/post" component={Post}></Route>
 
           </Switch>
-          <Chat></Chat>
+          {/* <Chat></Chat> */}
         </Router >
       </div>
     );

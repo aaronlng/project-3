@@ -8,8 +8,20 @@ module.exports = function (sequelize, DataTypes) {
             onDelete: "cascade"
         });
 
-        Chatroom.belongsToMany(models.members, { through: "MembersId" })
+        // Chatroom.belongsTo(models.members, {
+        //     forgienKey: {
+        //         allowNull: true
+        //     }
+        // })
+
+        Chatroom.belongsTo(models.bands, {
+            forgienKey: {
+                allowNull: true
+            }
+        })
     }
+
+
 
     return Chatroom;
 };

@@ -18,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
     Comments.belongsTo(models.post, {
       forgienKey: {
         allowNull: true
-      }
+      },
     });
   };
 

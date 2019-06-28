@@ -42,11 +42,15 @@ module.exports = function(sequelize, DataTypes) {
     //   defaultValue: "active"
     // }
   });
-  Bands.associate = function(post) {
-    Bands.hasMany(models.Post);
+  Bands.associate = function(models) {
+    Bands.hasMany(models.post);
   };
   Bands.associate = function(models) {
-    Bands.hasMany(models.Comments);
+    Bands.hasMany(models.comments);
+  };
+
+  Bands.associate = function(models) {
+    Bands.hasOne(models.Chatroom);
   };
 
   Bands.associate = function(models) {
