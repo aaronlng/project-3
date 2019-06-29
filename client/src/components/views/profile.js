@@ -4,6 +4,7 @@ import ImageUpload from "../ImageUpload";
 import API from "../../utils/API";
 import "./profile.css";
 import { Card, Container, Row, Col, Button } from "react-materialize";
+import AudioUpload from "../AudioUpload"
 
 export default class Profile extends Component {
   state = {
@@ -40,7 +41,7 @@ export default class Profile extends Component {
             <div className="image-holder">
               <img
                 id="picture"
-                src="https://amp.businessinsider.com/images/5d003e606fc92048d552ab93-750-563.jpg"
+                src="https://via.placeholder.com/150"
               />
               <Button className="yellow black-text edit-button">Edit</Button>
             </div>
@@ -93,12 +94,10 @@ export default class Profile extends Component {
               className="blue-grey darken-1 card-12"
               textClassName="white-text"
             >
-              <h4><b>Sample Music:</b> <Button className="yellow black-text edit-button">Edit</Button></h4>
+              <h4><b>Sample Music:</b><AudioUpload/> <Button className="yellow black-text edit-button">Edit</Button></h4>
             </Card>
           </Col>
         </Row>
-
-
       </Container>
     );
   }

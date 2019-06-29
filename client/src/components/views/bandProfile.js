@@ -4,6 +4,7 @@ import ImageUpload from "../ImageUpload";
 import API from "../../utils/API";
 import { Card, Container, Row, Col } from "react-materialize";
 import "./profile.css"
+import MusicPlayer from "../MusicPlayer";
 
 export default class Profile extends Component {
   state = {
@@ -41,7 +42,7 @@ export default class Profile extends Component {
           <Col s={5}>
             <img
               id="picture"
-              src="https://amp.businessinsider.com/images/5d003e606fc92048d552ab93-750-563.jpg"
+              src="https://images.unsplash.com/photo-1493936228893-0510232b1cf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
             />
           </Col>
           <Col s={7}>

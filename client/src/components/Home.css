@@ -1,0 +1,25 @@
+.page-title{
+    font-family: "Rubik Mono One", sans-serif;
+    margin-top: 0px;
+}
+
+.featured-title{
+    font-family: "Rubik Mono One", sans-serif;
+    text-align: center;
+}
+
+.featured-card{
+    padding: 10px 70px 20px 70px;
+}
+
+.featured-name{
+    text-align: center;
+}
+
+.card-body{
+    margin-bottom: 30px;
+}
+
+.page-container{
+    background-color: lightslategrey !important;
+}
