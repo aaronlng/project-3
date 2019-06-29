@@ -28,35 +28,58 @@ class Signup extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const User = {
-      fullName: this.state.fullName,
-      bio: this.state.bio,
-      genres: this.state.genres,
-      experience: this.state.experience,
-      email: this.state.email,
-      password: this.state.password
-    };
-    API.createMember(User).then(response => {
-      console.log("createMemberChat of id:" + response.data.id)
-      API.createMemberChat(response.data.id)
-      this.props.history.push("/profile/" + response.data.id);
-    });
+    if (
+      this.state.fullName === "" ||
+      this.state.genres === "" ||
+      this.state.experience === "" ||
+      this.state.bio === "" ||
+      this.state.email === "" ||
+      this.state.password === ""
+    ) {
+      return alert("you left something blank");
+    } else {
+      const User = {
+        fullName: this.state.fullName,
+        bio: this.state.bio,
+        genres: this.state.genres,
+        experience: this.state.experience,
+        email: this.state.email,
+        password: this.state.password
+      };
+      API.createMember(User).then(response => {
+        console.log("createMemberChat of id:" + response.data.id);
+        localStorage.setItem("user", JSON.stringify(response.data.id));
+        API.createMemberChat(response.data.id);
+        this.props.history.push("/profile/" + response.data.id);
+      });
+    }
   };
 
   handleBandSubmit = event => {
     event.preventDefault();
-    const Band = {
-      bandName: this.state.fullName,
-      bio: this.state.bio,
-      genres: this.state.genres,
-      lookingFor: this.state.lookingFor,
-      email: this.state.email,
-      password: this.state.password
-    };
-    API.createBand(Band).then(response => {
-      API.createBandChat(response.data.id)
-      this.props.history.push("/bandProfile/" + response.data.id);
-    });
+    if (
+      this.state.fullName === "" ||
+      this.state.genres === "" ||
+      this.state.lookingFor === "" ||
+      this.state.bio === "" ||
+      this.state.email === "" ||
+      this.state.password === ""
+    ) {
+      return alert("you left something blank");
+    } else {
+      const Band = {
+        bandName: this.state.fullName,
+        bio: this.state.bio,
+        genres: this.state.genres,
+        lookingFor: this.state.lookingFor,
+        email: this.state.email,
+        password: this.state.password
+      };
+      API.createBand(Band).then(response => {
+        API.createBandChat(response.data.id);
+        this.props.history.push("/bandProfile/" + response.data.id);
+      });
+    }
   };
   handleBandSignin = event => {
     event.preventDefault();

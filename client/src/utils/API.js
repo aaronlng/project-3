@@ -1,8 +1,6 @@
 import axios from "axios";
 
 export default {
-
-
   getChat: function(id) {
     return axios.get("/api/chat/" + id);
   },
@@ -36,43 +34,42 @@ export default {
     return axios.post("../api/message", message);
   },
 
-    getBands: function () {
-        return axios.get("/api/bands");
-    },
+  getBands: function() {
+    return axios.get("/api/bands");
+  },
 
-    createMember: function (data) {
-        return axios.post("/memberSignup", data);
-    },
+  createMember: function(data) {
+    return axios.post("/memberSignup", data);
+  },
 
+  createBand: function(data) {
+    return axios.post("/bandSignup", data);
+  },
 
-    createBand: function (data) {
-        return axios.post("/bandSignup", data);
-    },
+  getBandMessage: function(id) {
+    return axios.get("../api/message/" + id);
+  },
 
-    getBandMessage: function (id) {
-        return axios.get("../api/message/" + id)
-    },
+  getMemberMessage: function(id) {
+    console.log("membermessage api");
+    return axios.get("../api/membermessage/" + id);
+  },
 
-    getMemberMessage: function (id) {
-        console.log("membermessage api")
-        return axios.get("../api/membermessage/" + id)
-    },
+  postMessage: function(message) {
+    return axios.post("../api/message", message);
+  },
 
-    postMessage: function (message) {
-        return axios.post("../api/message", message)
-    },
+  postMemberMessage: function(message) {
+    return axios.post("../api/membermessage", message);
+  },
 
-    postMemberMessage: function (message) {
-        return axios.post("../api/membermessage", message)
-    },
+  getBandById: function(id) {
+    return axios.get("/api/band/" + id);
+  },
 
-    getBandById: function (id) {
-        return axios.get("/api/band/" + id)
-    },
-
-    getMemberById: function (id) {
-        return axios.get("/api/member/" + id)
-    },
+  getMemberById: function(id) {
+    return axios.get("/api/member/" + id);
+  },
 
   getBandProfile: function(id) {
     // post route to get a single member profile
@@ -83,13 +80,13 @@ export default {
     return axios.post("../api/upload", data);
   },
 
-    createMemberChat: function (id) {
-        return axios.post("../api/memberchatroom/" + id)
-    },
+  createMemberChat: function(id) {
+    return axios.post("../api/memberchatroom/" + id);
+  },
 
-    createBandChat: function (id) {
-        return axios.post("../api/bandchatroom/" + id)
-    }
+  createBandChat: function(id) {
+    return axios.post("../api/bandchatroom/" + id);
+  },
 
   createPost: function(data) {
     return axios.post("../api/post", data);

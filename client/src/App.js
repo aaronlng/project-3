@@ -14,7 +14,6 @@ import "materialize-css/dist/css/materialize.min.css";
 import Post from "./components/post.js";
 import bandProfile from "./components/views/bandProfile";
 
-
 import { SearchInput, SearchBtn, SearchSelect } from "./components/Search";
 
 // class App extends Component {

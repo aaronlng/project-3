@@ -4,6 +4,8 @@ const bCrypt = require("bcrypt-nodejs");
 module.exports = function(passport, member) {
   var User = member;
 
+  const JWTstrategy = require("passport-jwt").Strategy;
+  const ExtractJWT = require("passport-jwt").ExtractJwt;
   var LocalStrategy = require("passport-local").Strategy;
 
   passport.use(
@@ -126,5 +128,32 @@ module.exports = function(passport, member) {
           });
       }
     )
+  );
+  const opts = {
+    jwtFromRequest: ExtractJWT.fromAuthHeaderWithScheme("JWT"),
+    secretOrKey: "secret"
+  };
+
+  passport.use(
+    "jwt",
+    new JWTstrategy(opts, (jwt_payload, done) => {
+      try {
+        User.findOne({
+          where: {
+            id: jwt_payload.id
+          }
+        }).then(user => {
+          if (user) {
+            console.log("user found in db in passport");
+            done(null, user);
+          } else {
+            console.log("user not found in db");
+            done(null, false);
+          }
+        });
+      } catch (err) {
+        done(err);
+      }
+    })
   );
 };
