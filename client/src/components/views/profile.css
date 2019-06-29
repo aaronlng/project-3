@@ -10,11 +10,35 @@ body {
   border-radius: 200px;
 }
 
-.cards {
-  font-family: "Arimo", sans-serif;
-}
-
 #name {
   font-size: 90px;
   font-family: "Rubik Mono One", sans-serif;
+}
+
+.page-container{
+  background-color: white;
+  margin-top: 60px;
+  padding: 30px 0px 100px 0px;
+}
+
+.card-7{
+  font-family: "Arimo", sans-serif;
+  padding: 1px 10px 10px 10px;
+  margin: 0px 20px 0px 20px;
+}
+
+.card-12{
+  font-family: "Arimo", sans-serif;
+  padding: 1px 10px 10px 10px;
+  margin: 0px 20px 0px 20px;
+}
+
+.edit-button{
+  position: absolute;
+  right:10px;
+  top: 10px;
+}
+
+.image-holder{
+  position: relative;
 }
