@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import io from "socket.io-client"
-import "./Chat.css"
+// import "./Chat.css"
 import API from "../utils/API";
 
 

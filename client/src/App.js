@@ -40,7 +40,6 @@ class App extends Component {
       <div className="App">
         <nav>
           <div className="nav-wrapper">
-            {/* <img src={logo} a href="/" /> */}
             <ul id="nav-mobile" className="right hide-on-med-and-down">
               <li>
                 <a href="/">Home</a>

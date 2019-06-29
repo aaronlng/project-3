@@ -1,48 +1,60 @@
 import React, { Component } from "react";
-import firebase from "firebase";
-import FileUploader from "react-firebase-file-uploader";
-// import config from "../firebase-config";
+import { storage } from "../firebase";
+import { Modal, Container } from 'react-materialize';
 
-// firebase.initializeApp(config);
 
 class ImageUpload extends Component {
-  state = {
-    file: "",
-    fileURL: "",
-    isUploading: false,
-    progress: 0
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      image: null,
+      url: ""
+    }
+  }
 
-  handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
+  handleChange = e => {
+    if (e.target.files[0]) {
+      const image = e.target.files[0];
+      this.setState({ image });
+      console.log(e.target.files[0]);
+    }
+  }
 
-  handleProgress = progress => this.setState({ progress });
+  handleUpload = () => {
+    const { image } = this.state;
+    const uploadTask = storage.ref("images/" + image.name).put(image);
+    uploadTask.on("state_changed",
+      (snapshot) => {
+        //progress
+      },
+      (error) => {
+        //error
+        console.log(error);
+      },
+      () => {
+        //complete
+        storage.ref("images").child(image.name).getDownloadURL().then(url => {
+          console.log(url);
+          this.setState({
+            url: url,
+            name: image.name
+          });
 
-  handleUploadError = error => {
-    this.setState({ isUploading: false });
-    console.error(error);
-  };
-
-  handleUploadSuccess = filename => {
-    this.setState({ file: filename, progress: 100, isUploading: false });
-    firebase
-      .storage()
-      .ref("images")
-      .child(filename)
-      .getDownloadURL()
-      .then(url => this.setState({ fileURL: url }));
-  };
+        });
+      });
+  }
 
   render() {
     return (
       <div>
-        <h5>Upload an Image</h5>
-        <FileUploader
-          name="images"
-          storageRef={firebase.storage().ref("images")}
-          onUploadStart={this.handleUploadStart}
-          onUploadSuccess={this.handleUploadSuccess}
-          onProgress={this.handleProgress}
-        />
+        <Container>
+          <h4>Upload An Image</h4>
+          <input type="file" onChange={this.handleChange} />
+          <button onClick={this.handleUpload} href="#modal2" className="modal-trigger">Upload</button>
+          <Modal id="modal2" header="Success!">
+            Your file has been uploaded.
+          </Modal>
+        </Container>
       </div>
     );
   }
