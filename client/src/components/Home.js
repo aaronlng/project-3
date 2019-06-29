@@ -2,7 +2,8 @@
 import React, { Component } from "react";
 import { SearchInput, SearchBtn, SearchSelect } from "./Search";
 import API from "../utils/API";
-import { Modal, Card, Row, Col, Container } from 'react-materialize';
+import { Modal, Card, Row, Col, Container, CardTitle } from 'react-materialize';
+
 
 
 
@@ -106,10 +107,10 @@ class Home extends Component {
               <a href={`/member/${this.state.featuredMember.id}`}>Link</a>
             </Col>
           ) : (
-            <Col s={12} m={6}>
-              <h3>No Featured Member yet become one today </h3>
-            </Col>
-          )}
+               <Col s={12} m={6}>
+                <h3>No Featured Member yet become one today </h3>
+              </Col>
+            )}
           {this.state.featuredBand ? (
             <Col s={12} m={6}>
               <h3>Featured Band</h3>
@@ -117,10 +118,10 @@ class Home extends Component {
               <a href={`/band/${this.state.featuredBand.id}`}>Link</a>
             </Col>
           ) : (
-            <Col s={12} m={6}>
-              <h3>No Featured Band yet become one today </h3>
-            </Col>
-          )}
+              <Col s={12} m={6}>
+                <h3>No Featured Band yet become one today </h3>
+              </Col>
+            )}
         </Row>
 
         <div>
