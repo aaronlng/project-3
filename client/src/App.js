@@ -9,6 +9,7 @@ import Bands from "./components/views/bands";
 import Signup from "./components/login/signup";
 import Chat from "./components/Chat";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Navbar, NavItem } from "react-materialize"
 
 import "materialize-css/dist/css/materialize.min.css";
 import Post from "./components/post.js";
@@ -38,8 +39,32 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <nav>
+
+
+        <Navbar
+          brand={<a href="/" className="brand">Bandly</a>}
+          alignLinks="right"
+        >
+          <NavItem>
+            <a href="/">Home</a>
+          </NavItem>
+          <NavItem>
+            <a href="/post">Posts</a>
+          </NavItem>
+          <NavItem>
+            {this.state.loggedIn ? (
+              <a href="/profile/:id">Profile</a>
+            ) : (
+                <a href="/signin">Login</a>
+              )}
+          </NavItem>
+
+
+        </Navbar>
+
+        {/* <nav>
           <div className="nav-wrapper">
+            <a href="#" class="brand-logo page-title left">Bandly</a>
             <ul id="nav-mobile" className="right hide-on-med-and-down">
               <li>
                 <a href="/">Home</a>
@@ -51,12 +76,12 @@ class App extends Component {
                 {this.state.loggedIn ? (
                   <a href="/profile/:id">Profile</a>
                 ) : (
-                  <a href="/signin">Login</a>
-                )}
+                    <a href="/signin">Login</a>
+                  )}
               </li>
             </ul>
           </div>
-        </nav>
+        </nav> */}
         <Router>
           <Switch>
             <Route exact path="/" component={Home} />

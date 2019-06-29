@@ -33,3 +33,10 @@
     transform: rotate(360deg);
   }
 }
+
+
+.brand{
+  font-family: "Rubik Mono One", sans-serif;
+  position: absolute;
+  left: 50px;
+}

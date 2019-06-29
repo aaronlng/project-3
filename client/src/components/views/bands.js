@@ -5,6 +5,7 @@ import "./Chat.css"
 import io from "socket.io-client"
 import "./bands.css"
 import { Button, Row, Col, Container, Card } from "react-materialize"
+import MusicPlayer from '../MusicPlayer';
 export default class Bands extends Component {
 
   constructor(props) {
@@ -294,7 +295,7 @@ export default class Bands extends Component {
                   className="blue-grey darken-1 card-12"
                   textClassName="white-text"
                 >
-                  <h4><b>Sample Music:</b>  </h4>
+                  <h4><b>Sample Music:</b><MusicPlayer/>  </h4>
                 </Card>
               </Col>
             </Row>

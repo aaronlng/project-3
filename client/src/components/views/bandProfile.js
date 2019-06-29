@@ -5,6 +5,7 @@ import API from "../../utils/API";
 import { Card, Container, Row, Col } from "react-materialize";
 import "./profile.css"
 import MusicPlayer from "../MusicPlayer";
+import AudioUpload from "../AudioUpload";
 
 export default class Profile extends Component {
   state = {
@@ -92,7 +93,7 @@ export default class Profile extends Component {
               className="blue-grey darken-1 card-12"
               textClassName="white-text"
             >
-              <h4><b>Sample Music:</b> </h4>
+              <h4><b>Sample Music:</b> <AudioUpload/> </h4>
             </Card>
           </Col>
         </Row>

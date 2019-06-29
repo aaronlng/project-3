@@ -5,6 +5,7 @@ import "./Chat.css"
 import io from "socket.io-client"
 import { Button, Row, Col, Card, Container } from "react-materialize"
 import "./profile.css"
+import MusiclPlayer from "../MusicPlayer"
 
 
 class Member extends Component {
@@ -280,7 +281,7 @@ class Member extends Component {
                                         className="blue-grey darken-1 card-12"
                                         textClassName="white-text"
                                     >
-                                        <h4><b>Sample Music:</b>  </h4>
+                                        <h4><b>Sample Music:</b> <MusiclPlayer/>  </h4>
                                     </Card>
                                 </Col>
                             </Row>

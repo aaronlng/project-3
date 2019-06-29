@@ -93,9 +93,9 @@ export default class Post extends Component {
                   <img src={img} className="post-image" />
                 </Col>
                 <Col s={9}>
-                  <h1 className="card-title">Local Guitarist Needed!</h1>
+                  <h1 className="card-title">Local Guitarist Needed in Philadelphia!</h1>
                   <p className="card-content">
-                    We're in need of a local guitarist for a reggea band! You'll
+                    We're in need of a guitarist in the Philadelphia area for a reggea band! You'll
                     need to be avaible on Monday and Wednesday nights. if you
                     intrested please give us a call at 610-589-7510.
                   </p>
