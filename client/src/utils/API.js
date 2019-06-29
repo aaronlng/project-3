@@ -36,6 +36,7 @@ export default {
 
   getBands: function () {
     return axios.get("/api/band");
+
   },
 
   createMember: function (data) {
