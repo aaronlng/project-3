@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import API from "../../utils/API"
 import "./Chat.css"
 import io from "socket.io-client"
+import { Button, Row, Col } from "react-materialize"
+
 
 class Member extends Component {
 
@@ -163,15 +165,25 @@ class Member extends Component {
 
     renderChat = () => {
         const messages = this.state.messages.map((message, index) => {
-            return <li key={index} className="chat-message"><b>{message.from} :</b> {message.body}</li>
+            return <p key={index} className="chat-message"><b>{message.from} :</b> {message.body}</p>
         })
 
         if (!this.state.chatMinimized) {
             return (
                 <div className="chat">
-                    <div className="chat-bar"><button className="chat-toggle-btn" onClick={this.toggleChat}>close</button></div>
+                    <div className="chat-bar">
+                        <Row>
+                            <Col s={3}>
+                            </Col>
+                            <Col s={6}>
+                                <h6 className="bar-title">Message Board</h6>
+                            </Col>
+                            <Col s={3}>
+                                <Button waves="purple" className="chat-toggle-btn red lighten-5" onClick={this.toggleChat}>Close</Button>
+                            </Col>
+                        </Row>
+                    </div>
                     <div className="chat-box">
-                        <h1>Chat room</h1>
                         <input
                             id="chat-input"
                             type="text"
@@ -189,7 +201,18 @@ class Member extends Component {
         } else if (this.state.chatMinimized) {
             return (
                 <div className="chat">
-                    <div className="chat-bar"><button className="chat-toggle-btn" onClick={this.toggleChat}>Open</button></div>
+                    <div className="chat-bar">
+                        <Row>
+                            <Col s={3}>
+                            </Col>
+                            <Col s={6}>
+                                <h6 className="bar-title">Message Board</h6>
+                            </Col>
+                            <Col s={3}>
+                                <Button waves="purple" className="chat-toggle-btn red lighten-5" onClick={this.toggleChat}>Open</Button>
+                            </Col>
+                        </Row>
+                    </div>
                 </div>
             )
         }
