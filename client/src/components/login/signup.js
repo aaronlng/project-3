@@ -209,23 +209,23 @@ class Signup extends Component {
         <div className="row">
           <div className="input-field col s12">
             <input
-              id="passwordS"
-              type="password"
-              className="validate"
-              onChange={this.handleInputChange}
-            />
-            <label for="passwordS">password</label>
-          </div>
-        </div>
-        <div className="row">
-          <div className="input-field col s12">
-            <input
               id="emailS"
               type="email"
               className="validate"
               onChange={this.handleInputChange}
             />
             <label for="emailS">Email</label>
+          </div>
+        </div>
+        <div className="row">
+          <div className="input-field col s12">
+            <input
+              id="passwordS"
+              type="password"
+              className="validate"
+              onChange={this.handleInputChange}
+            />
+            <label for="passwordS">password</label>
           </div>
         </div>
         <btn
@@ -244,23 +244,23 @@ class Signup extends Component {
         <div className="row">
           <div className="input-field col s12">
             <input
-              id="passwordS"
-              type="password"
-              className="validate"
-              onChange={this.handleInputChange}
-            />
-            <label for="passwordS">password</label>
-          </div>
-        </div>
-        <div className="row">
-          <div className="input-field col s12">
-            <input
               id="emailS"
               type="email"
               className="validate"
               onChange={this.handleInputChange}
             />
             <label for="emailS">Email</label>
+          </div>
+        </div>
+        <div className="row">
+          <div className="input-field col s12">
+            <input
+              id="passwordS"
+              type="password"
+              className="validate"
+              onChange={this.handleInputChange}
+            />
+            <label for="passwordS">password</label>
           </div>
         </div>
         <btn
