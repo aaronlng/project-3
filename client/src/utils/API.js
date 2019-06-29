@@ -1,8 +1,6 @@
 import axios from "axios";
 
 export default {
-
-
   getChat: function (id) {
     return axios.get("/api/chat/" + id);
   },
@@ -37,7 +35,8 @@ export default {
   },
 
   getBands: function () {
-    return axios.get("/api/bands");
+    return axios.get("/api/band");
+
   },
 
   createMember: function (data) {

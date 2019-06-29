@@ -3,6 +3,8 @@ import proimg from '../imgs/profile.png'
 import API from "../../utils/API"
 import "./Chat.css"
 import io from "socket.io-client"
+import "./bands.css"
+import { Button, Row, Col, Container, Card } from "react-materialize"
 export default class Bands extends Component {
 
   constructor(props) {
@@ -153,15 +155,25 @@ export default class Bands extends Component {
 
   renderChat = () => {
     const messages = this.state.messages.map((message, index) => {
-      return <li key={index} className="chat-message"><b>{message.from} :</b> {message.body}</li>
+      return <p key={index} className="chat-message"><b>{message.from} :</b> {message.body}</p>
     })
 
     if (!this.state.chatMinimized) {
       return (
         <div className="chat">
-          <div className="chat-bar"><button className="chat-toggle-btn" onClick={this.toggleChat}>close</button></div>
+          <div className="chat-bar">
+            <Row>
+              <Col s={3}>
+              </Col>
+              <Col s={6}>
+                <h6 className="bar-title">Message Board</h6>
+              </Col>
+              <Col s={3}>
+                <Button waves="purple" className="chat-toggle-btn red lighten-5" onClick={this.toggleChat}>Close</Button>
+              </Col>
+            </Row>
+          </div>
           <div className="chat-box">
-            <h1>Chat room</h1>
             <input
               id="chat-input"
               type="text"
@@ -179,7 +191,18 @@ export default class Bands extends Component {
     } else if (this.state.chatMinimized) {
       return (
         <div className="chat">
-          <div className="chat-bar"><button className="chat-toggle-btn" onClick={this.toggleChat}>Open</button></div>
+          <div className="chat-bar">
+            <Row>
+              <Col s={3}>
+              </Col>
+              <Col s={6}>
+                <h6 className="bar-title">Message Board</h6>
+              </Col>
+              <Col s={3}>
+                <Button waves="purple" className="chat-toggle-btn red lighten-5" onClick={this.toggleChat}>Open</Button>
+              </Col>
+            </Row>
+          </div>
         </div>
       )
     }
@@ -212,50 +235,114 @@ export default class Bands extends Component {
     })
 
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col s12">
-            <div className="card">
-              <div className="card-image">
-                <img src="images/sample-1.jpg" />
-              </div>
-              <span className="card-title">We Jammin Bois</span>
-              <div className="card-content">
-                <h1>bandname: {this.state.bandData.bandName}</h1>
-                <p>
-                  The Most Down-to-Earth reggea you ever heard!
-                </p>
-              </div>
-            </div>
+
+      <Container className="page-container">
+
+        {this.state.bandData.bandName ? (
+          <div>
+            <Row>
+              <Col s={5}>
+                <img
+                  id="picture"
+                  src="https://amp.businessinsider.com/images/5d003e606fc92048d552ab93-750-563.jpg"
+                />
+              </Col>
+              <Col s={7}>
+                <h1 id="name">{this.state.bandData.bandName}</h1>
+                <Card
+                  className="blue-grey darken-1 card-7"
+                  textClassName="white-text"
+                  title="Bio"
+                >
+                  {this.state.bandData.bio}
+                </Card>
+              </Col>
+            </Row>
+            <Row>
+              <Col s={12}>
+                <Card
+                  className="blue-grey darken-1 card-12"
+                  textClassName="white-text"
+                >
+                  <h4><b>Genre We Play: </b> {this.state.bandData.genres}</h4>
+                </Card>
+              </Col>
+            </Row>
+            <Row>
+              <Col s={12}>
+                <Card
+                  className="blue-grey darken-1 card-12"
+                  textClassName="white-text"
+                >
+                  <h4><b>Who We are Looking to Add: </b>{this.state.bandData.lookingFor}</h4>
+                </Card>
+              </Col>
+            </Row>
+            <Row>
+              <Col s={12}>
+                <Card
+                  className="blue-grey darken-1 card-12"
+                  textClassName="white-text"
+                >
+                  <h4><b>ContactEmail: </b>{this.state.bandData.email}</h4>
+                </Card>
+              </Col>
+            </Row>
+            <Row>
+              <Col s={12}>
+                <Card
+                  className="blue-grey darken-1 card-12"
+                  textClassName="white-text"
+                >
+                  <h4><b>Sample Music:</b> </h4>
+                </Card>
+              </Col>
+            </Row>
           </div>
-        </div>
 
 
-        <div>
 
-          {/*
-          Debugging tools
-           <button onClick={this.apiTest}>API test</button>
 
-          <button onClick={this.testUser1}>user1</button>
-          <button onClick={this.testUser2}>user2</button>
-          <button onClick={() => this.joinRoom("1")}>Join Room 1</button>
-          <button onClick={() => this.joinRoom("2")}>Join Room 2</button>
-         */}
-          {/* <h1>Chat room</h1>
-            <input type="text" placeholder="enter a message" onKeyUp={this.handleSubmit} />
-          {messages} */}
+          // <div>
+          //   <h1>{this.state.bandData.bandName}</h1>
+          //   <p>{this.state.bandData.genres}</p>
+          //   <p>{this.state.bandData.bio}</p>
+          //   <p>Currently Looking For: {this.state.bandData.lookingFor}</p>
+          //   <p>Contact us: {this.state.bandData.email}</p>
+          // </div>
+        ) : (
+            <h1>Error! Band Missing</h1>
+          )}
 
-          {this.renderChat()}
-
-        </div>
-
-      </div>
-
+        {this.renderChat()}
+      </Container>
     )
   }
-
-
-
-
 }
+
+/*
+    bandName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+
+    bio: DataTypes.TEXT,
+
+    lookingFor: DataTypes.STRING,
+
+    //will need to json.Stringify to convert or parse it out if we are extracting
+    genres: {
+      type: DataTypes.STRING
+    },
+    email: {
+      type: DataTypes.STRING,
+      validate: {
+        isEmail: true
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
+
+*/
