@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { SearchInput, SearchBtn, SearchSelect } from "./Search";
 import API from "../utils/API";
 import { Modal, Card, Row, Col, Container, CardTitle } from 'react-materialize';
+import MusicPlayer from "./MusicPlayer"
 
 
 
@@ -148,6 +149,7 @@ class Home extends Component {
               <h3>Featured Member</h3>
               <p>{this.state.featuredMember.fullName}</p>
               <a href={`/member/${this.state.featuredMember.id}`}>Link</a>
+              <MusicPlayer />
             </Col>
           ) : (
 
@@ -160,6 +162,7 @@ class Home extends Component {
               <h3>Featured Band</h3>
               <p>{this.state.featuredBand.bandName}</p>
               <a href={`/band/${this.state.featuredBand.id}`}>Link</a>
+              <MusicPlayer />
             </Col>
           ) : (
               <Col s={12} m={6}>
