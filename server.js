@@ -3,12 +3,12 @@ const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
 const routes = require("./routes");
-var env = require("dotenv").config();
 const db = require("./models");
 const passport = require("passport");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const generateSingupRoutes = require("./routes/api/auth");
+require("dotenv").config();
 
 //Models
 
