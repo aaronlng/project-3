@@ -2,9 +2,9 @@ import firebase from "firebase/app";
 import "firebase/storage";
 
 var config = {
-    apiKey: process.env.firebase-APIkey,
+    apiKey: process.env.firebaseAPIkey,
     authDomain: "project-3-9aeae.firebaseapp.com",
-    databaseURL: process.env.firebase-URL,
+    databaseURL: process.env.firebaseURL,
     projectId: "project-3-9aeae",
     storageBucket: "project-3-9aeae.appspot.com",
     messagingSenderId: "752723831088",
