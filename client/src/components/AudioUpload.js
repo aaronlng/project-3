@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { storage } from "../firebase";
 import {Modal, Container, Row} from 'react-materialize';
+import MusicPlayer from "./MusicPlayer";
 
 
 class AudioUpload extends Component {
@@ -8,7 +9,8 @@ class AudioUpload extends Component {
         super(props);
         this.state = {
             audio: null,
-            url: ""
+            url: "",
+            uploaded: false
         }
     }
 
@@ -22,6 +24,7 @@ class AudioUpload extends Component {
 
     handleUpload = () => {
         const { audio } = this.state;
+        this.setState({uploaded:true})
         const uploadTask = storage.ref("audio/" + audio.name).put(audio);
         uploadTask.on("state_changed",
             (snapshot) => {
@@ -55,11 +58,13 @@ class AudioUpload extends Component {
                             Your file has been uploaded. 
                         </Modal>
                     </Row>
-                    <Row>
+
+                    {this.state.uploaded && <MusicPlayer/>}
+                    {/* <Row>
                         <audio controls>
                             <source src={this.state.url} type="audio/mp3"></source>
                         </audio>
-                    </Row>
+                    </Row> */}
                 </Container>
             </div>
         );

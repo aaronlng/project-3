@@ -4,6 +4,8 @@ import ImageUpload from "../ImageUpload";
 import API from "../../utils/API";
 import "./profile.css";
 import { Card, Container, Row, Col, Button } from "react-materialize";
+import AudioUpload from "../AudioUpload"
+import MusicPlayer from "../MusicPlayer";
 
 export default class Profile extends Component {
   state = {
@@ -11,7 +13,8 @@ export default class Profile extends Component {
     bio: "asdf",
     genres: "guitar",
     experience: "none",
-    email: "asdf@asdf.com"
+    email: "asdf@asdf.com",
+    uploaded: false
   };
 
   componentDidMount() {
@@ -32,6 +35,10 @@ export default class Profile extends Component {
       .catch(err => console.log(err));
   };
 
+  uploaded = () => {
+    this.setState({ uploaded: true })
+  }
+
   render() {
     return (
       <Container className="page-container">
@@ -40,7 +47,7 @@ export default class Profile extends Component {
             <div className="image-holder">
               <img
                 id="picture"
-                src="https://amp.businessinsider.com/images/5d003e606fc92048d552ab93-750-563.jpg"
+                src="https://via.placeholder.com/150"
               />
               <Button className="yellow black-text edit-button">Edit</Button>
             </div>
@@ -93,12 +100,11 @@ export default class Profile extends Component {
               className="blue-grey darken-1 card-12"
               textClassName="white-text"
             >
-              <h4><b>Sample Music:</b> <Button className="yellow black-text edit-button">Edit</Button></h4>
+              <h4><b>Sample Music:</b><AudioUpload /></h4>
+              {this.state.uploaded && <MusicPlayer />}
             </Card>
           </Col>
         </Row>
-
-
       </Container>
     );
   }

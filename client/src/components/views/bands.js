@@ -5,6 +5,7 @@ import "./Chat.css"
 import io from "socket.io-client"
 import "./bands.css"
 import { Button, Row, Col, Container, Card } from "react-materialize"
+import MusicPlayer from '../MusicPlayer';
 export default class Bands extends Component {
 
   constructor(props) {
@@ -244,7 +245,7 @@ export default class Bands extends Component {
               <Col s={5}>
                 <img
                   id="picture"
-                  src="https://amp.businessinsider.com/images/5d003e606fc92048d552ab93-750-563.jpg"
+                  src="https://images.unsplash.com/photo-1493936228893-0510232b1cf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
                 />
               </Col>
               <Col s={7}>
@@ -294,7 +295,7 @@ export default class Bands extends Component {
                   className="blue-grey darken-1 card-12"
                   textClassName="white-text"
                 >
-                  <h4><b>Sample Music:</b> </h4>
+                  <h4><b>Sample Music:</b><MusicPlayer/>  </h4>
                 </Card>
               </Col>
             </Row>

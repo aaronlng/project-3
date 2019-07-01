@@ -3,7 +3,9 @@ import React, { Component } from "react";
 import API from "../../utils/API"
 import "./Chat.css"
 import io from "socket.io-client"
-import { Button, Row, Col } from "react-materialize"
+import { Button, Row, Col, Card, Container } from "react-materialize"
+import "./profile.css"
+import MusiclPlayer from "../MusicPlayer"
 
 
 class Member extends Component {
@@ -221,11 +223,87 @@ class Member extends Component {
 
     render() {
         return (
-            <div>
-                <h1>Member: {this.state.memberData.fullName}</h1>
+            <Container className="page-container">
+                <div>
+                    {this.state.memberData.fullName ? (
+                        <div>
+                            <Row>
+                                <Col s={5}>
+                                    <img
+                                        id="picture"
+                                        src="https://via.placeholder.com/150"
+                                    />
+                                </Col>
+                                <Col s={7}>
+                                    <h1 id="name">{this.state.memberData.fullName}</h1>
+                                    <Card
+                                        className="blue-grey darken-1 card-7"
+                                        textClassName="white-text"
+                                        title="Bio"
+                                    >
+                                        {this.state.memberData.bio}
+                                    </Card>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col s={12}>
+                                    <Card
+                                        className="blue-grey darken-1 card-12"
+                                        textClassName="white-text"
+                                    >
+                                        <h4><b>Genre We Play: </b> {this.state.memberData.genres}</h4>
+                                    </Card>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col s={12}>
+                                    <Card
+                                        className="blue-grey darken-1 card-12"
+                                        textClassName="white-text"
+                                    >
+                                        <h4><b>Who We are Looking to Add: </b>{this.state.memberData.experience}</h4>
+                                    </Card>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col s={12}>
+                                    <Card
+                                        className="blue-grey darken-1 card-12"
+                                        textClassName="white-text"
+                                    >
+                                        <h4><b>ContactEmail: </b>{this.state.memberData.email}</h4>
+                                    </Card>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col s={12}>
+                                    <Card
+                                        className="blue-grey darken-1 card-12"
+                                        textClassName="white-text"
+                                    >
+                                        <h4><b>Sample Music:</b> <MusiclPlayer/>  </h4>
+                                    </Card>
+                                </Col>
+                            </Row>
+                        </div>
 
-                {this.renderChat()}
-            </div>
+
+
+
+                        // <div>
+                        //   <h1>{this.state.bandData.bandName}</h1>
+                        //   <p>{this.state.bandData.genres}</p>
+                        //   <p>{this.state.bandData.bio}</p>
+                        //   <p>Currently Looking For: {this.state.bandData.lookingFor}</p>
+                        //   <p>Contact us: {this.state.bandData.email}</p>
+                        // </div>
+                    ) : (
+                            <h1>Error! Band Missing</h1>
+                        )}
+
+                    {this.renderChat()}
+                </div>
+            </Container>
         )
     }
 }

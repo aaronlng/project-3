@@ -117,7 +117,7 @@ class Signup extends Component {
                   className="validate"
                   onChange={this.handleInputChange}
                 />
-                <label for="fullName">full Name</label>
+                <label for="fullName">Full Name</label>
               </div>
             </div>
             <div className="row">
@@ -141,7 +141,7 @@ class Signup extends Component {
                   className="validate"
                   onChange={this.handleInputChange}
                 />
-                <label for="experience">experience</label>
+                <label for="experience">Experience</label>
               </div>
             </div>
             <div className="row">
@@ -288,7 +288,7 @@ class Signup extends Component {
                   className="validate"
                   onChange={this.handleInputChange}
                 />
-                <label for="fullName">Bands Name</label>
+                <label for="fullName">Band Name</label>
               </div>
             </div>
             <div className="row">
