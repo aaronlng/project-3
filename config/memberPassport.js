@@ -47,7 +47,9 @@ module.exports = function(passport, member) {
 
               genres: req.body.genres,
 
-              experience: req.body.experience
+              experience: req.body.experience,
+
+              isAuth: true
             };
 
             User.create(data).then(function(newUser, created) {
@@ -103,6 +105,7 @@ module.exports = function(passport, member) {
             email: email
           }
         })
+          .then(email => User.update({ isAuth: true, where: { email: email } }))
           .then(function(member) {
             if (!member) {
               return done(null, false, {
