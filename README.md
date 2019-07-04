@@ -2,7 +2,7 @@
 
 Deployed Site: [https://upenn2019-project-3.herokuapp.com/](https://upenn2019-project-3.herokuapp.com/)
 
-* Currently database is down
+* Database currently down.
 
 ## Description
 
@@ -61,6 +61,8 @@ A post, newsfeed page for people to know whats going on in the world of musician
 * Follow system such as twitters, social media element make connections more engaing.
 
 * Front-end polishing.
+
+* Fixing uploading
 
 
 
