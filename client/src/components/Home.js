@@ -4,6 +4,7 @@ import { SearchInput, SearchBtn, SearchSelect } from "./Search";
 import API from "../utils/API";
 import { Modal, Card, Row, Col, Container, CardTitle } from 'react-materialize';
 import MusicPlayer from "./MusicPlayer"
+import "./Home.css"
 
 
 
@@ -141,38 +142,58 @@ class Home extends Component {
 
   render() {
     return (
-      <Container className="page-container">
-        <h1>Bandly</h1>
+      <Container className="page-container gray">
+        <h1 className="page-title grey-text text-lighten-3">Bandly</h1>
+        <hr></hr>
         <Row>
           {this.state.featuredMember ? (
             <Col s={12} m={6}>
-              <h3>Featured Member</h3>
-              <p>{this.state.featuredMember.fullName}</p>
-              <a href={`/member/${this.state.featuredMember.id}`}>Link</a>
-              <MusicPlayer />
+              <Card
+                className="featured-card blue-grey"
+                actions={[<a href={`/member/${this.state.featuredMember.id}`}>Link to Profile</a>
+                ]}
+              >
+                <h3 className="featured-title">Featured Member</h3>
+                <div className="card-body white-text">
+                  <h4 className="featured-name"><b>{this.state.featuredMember.fullName}</b></h4>
+                  <p className="white-text"><b>Bio: </b> {this.state.featuredMember.bio}</p>
+                </div>
+                <MusicPlayer />
+              </Card>
             </Col>
           ) : (
 
               <Col s={12} m={6}>
-                <h3>No Featured Member yet become one today </h3>
+                <Card className="featured-card">
+                  <h3>No Featured Member yet become one today </h3>
+                </Card>
               </Col>
             )}
           {this.state.featuredBand ? (
             <Col s={12} m={6}>
-              <h3>Featured Band</h3>
-              <p>{this.state.featuredBand.bandName}</p>
-              <a href={`/band/${this.state.featuredBand.id}`}>Link</a>
-              <MusicPlayer />
+              <Card
+                className="featured-card blue-grey"
+                actions={[<a href={`/band/${this.state.featuredBand.id}`}>Link to Profile</a>]}
+              >
+                <h3 className="featured-title">Featured Band</h3>
+                <div className="card-body white-text">
+                  <h4 className="featured-name"><b>{this.state.featuredBand.bandName}</b></h4>
+                  <p className="white-text"><b>Bio:</b> {this.state.featuredBand.bio}</p>
+                </div>
+                <MusicPlayer />
+              </Card>
             </Col>
           ) : (
               <Col s={12} m={6}>
-                <h3>No Featured Band yet become one today </h3>
+                <Card className="featured-card">
+                  <h3>No Featured Band yet become one today </h3>
+                </Card>
               </Col>
             )}
         </Row>
 
         <div>
-          <h2>Find More Bands and Members</h2>
+          <h2 className="page-title">Find More Bands and Members</h2>
 
           <div className="row">
             <div className="col s2">
@@ -246,7 +267,7 @@ class Home extends Component {
                               <Col s={9}>
                                 <h1 className="card-title">{result.fullName}</h1>
                                 <p className="card-content">{result.bio}</p>
-                                <a href={link}>link</a>
+                                <a href={link}>Link to Profile</a>
                               </Col>
                             </Row>
                           </Card>

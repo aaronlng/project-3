@@ -6,7 +6,7 @@ class MusicPlayer extends Component {
         return (
             <div>
                 <audio controls>
-                    <source src="audio/track.mp3" type="audio/mp3" />
+                    <source src="../audio/track.mp3" type="audio/mp3" />
                     Your browser does not support the audio element.    
                 </audio>
             </div>
